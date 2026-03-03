@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body></body>
+    <h1 style="background-color: blue; color: white; text-align:center;" id = "id_titulo" text>Calculadora Financeira - SaveYogurt</h1>
+    <h3>Para saber o impacto do nosso produto em sua empresa, informe cada uma das orientações abaixo:</h3>
+    <label for="id_lote_litro">Informe quantos litros tem em cada caixa de iogurte por dia</label>
+    <input type="number" id="id_lote_litro" placeholder="Litros por Lote"> <br>
+    <label for="id_lote_perdido">Informe quantos lotes se perdem por mês por conta de baixa temperatura</label>
+    <input type="number" id="id_lote_perdido" placeholder="Lotes Perdidos"><br>
+    <button onclick="Calcular1()">Verificar Informações</button>
+    <p id="id_resultados"></p>
+</body>
+<script>    
+    function Calcular1(){
+        let Litros = Number(id_lote_litro.value)
+        let Perdido = Number(id_lote_perdido.value)
+        let Qtd_Perdido = 0
+        if (Litros<=0){
+            id_resultados.innerHTML="Informe um número maior que zero no campo (Litros por lote)"
+            if(Perdido<=0){
+                id_resultados.innerHTML="Informe um número maior que zero no campo (Lotes Perdidos)"
+            }
+        }
+        else{
+            if(Perdido<=0){
+                id_resultados.innerHTML="Informe um número maior que zero no campo (Lotes Perdidos)"
+            }
+            else{
+                let Qtd_Perdido=Litros*2.02*Perdido
+                id_resultados.innerHTML=`O nosso produto ajudará você a recuperar, pelo menos R$${Qtd_Perdido.toFixed(2)} por mês<br><br>
+                    <b style=color:red;>O que pode fazer com que esse valor se altere?</b><br>
+                    - <b>Caso não haja o cumprimento do serviço de manutenção dos refrigeradores a tempo:</b> O tempo máximo que um iogurte pode ficar fora da temperatura ideal é de aproximadamente 2:00h. Ao passar disso, o produto pode ser considerado estragado!...<br>
+                    - <b>Problemas de instalação do produto:</b> Caso o nosso produto não seja instalado da maneira devida, isso pode impactar no seu desempenho e função. Certifique-se que o produto foi intalado da maneira correta e segundo as intruções. Nesse caso, entre em contato!<br>
+                    - <b>Problemas não relacionados à temperatura:</b> O nosso produto certifica que apenas a temperatura esteja dentro do ideal, problemas com agentes transmissores de doenças ou problemas técnicos na fabricação do Iogurte estão fora de nosso alcance para solução<br><br>
+                    <p style="color:blue">Caso não seja nenhum dos problemas citados acima, entre em contato! </p>`
+            }
+        }
+    }
+</script>
+</html>
