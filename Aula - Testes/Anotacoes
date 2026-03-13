@@ -43,4 +43,9 @@
             console.log("A palavra Bob foi encontra na posição: " + indice_Bob_frase)
         };
 
-        document.getElementById("password").value = "" */
+        document.getElementById("password").value = "" *
+        
+        
+        MENSAGEM UTILIZADA PARA TESTES NO DETECTOR DE MENSAGENS SUSPEITAS:
+        "Eu estou enviando esta mensagem para Bob, com acesso grátis a site//seguro.com.br"
+        */

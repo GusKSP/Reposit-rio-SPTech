@@ -12,6 +12,8 @@
     <div>
         <input type="search" id="ipt_mensagem">
         <button onclick=AnalisarMensagem()>Analisar Mensagem</button>
+
+        <h3 id="h3_classificacao">Classificação da mensagem:</h3>
         <div id="div_resultado"></div>
     </div>
 </body>
@@ -80,19 +82,28 @@
         }
         else {
             div_resultado.innerHTML =
-                `A mensagem contém Eu no início: ${inicio_frase}<br>
+                `
+            A mensagem contém Eu no início: ${inicio_frase}<br>
             A mensagem contém .com ou .br no fim? ${fim_frase}<br>
             Primeira letra da mensagem: ${primeira_letra}<br>
             Ultima letra da mensagem: ${ultima_letra}<br>
+            A palavra Bob aparece no índice: ${validar_bob}<br>
+            Mensagem Toda em Maiúsculo: ${caixa_alta_comespaco}<br>
+            Mensagem Toda em Minúsculo: ${caixa_baixa_comespaco}<br>
             `
             if (validar_bob >= 0) {
-                div_resultado.innerHTML += "<br>usuário Bob mencionado na mensagem";
+                div_resultado.innerHTML += "<br>Usuário Bob mencionado na mensagem";
             }
             if (fim_frase == true) {
-                div_resultado.innerHTML += "<br>A mensagem contém um possível link.";
+                div_resultado.innerHTML += "<br>A mensagem contém um possível link."
+                h3_classificacao.innerHTML += "<span style='color:blue;'><br>Mensagem com Link</span>"
             }
             if (verificar_spam == true) {
-                div_resultado.innerHTML += "<br>ossível mensagem de spam detectada."
+                div_resultado.innerHTML += "<br>Possível mensagem de spam detectada."
+                h3_classificacao.innerHTML += "<span style='color:red;'> <br> Mensagem suspeita</span>"
+            }
+            if (verificar_spam == false && fim_frase == false) {
+                h3_classificacao.innerHTML += "<span style='color:green;'> <br> Mensagem normal</span>"
             }
             if (inicio_frase == true) {
                 div_resultado.innerHTML += "<br>A mensagem parece estar escrita em primeira pessoa."
