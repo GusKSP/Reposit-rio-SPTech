@@ -13,8 +13,9 @@
         <input type="search" id="ipt_mensagem">
         <button onclick=AnalisarMensagem()>Analisar Mensagem</button>
 
-        <h3 id="h3_classificacao">Classificação da mensagem:</h3>
-        <div id="div_resultado"></div>
+        <div id="div_resultado">
+            <h3 id="id_classificacao">Classificação da mensagem:</h3>
+        </div>
     </div>
 </body>
 <script>
@@ -49,19 +50,27 @@
         };
         console.log(`fim ${fim_frase}`);
 
-
+        let index_com = caixa_baixa.indexOf(".com");
+        let index_br = caixa_baixa.indexOf(".br");
+        let verificar_com_br = false;
+        if (index_com >= 0) {
+            verificar_com_br = true;
+        }
+        else if (index_br >= 0) {
+            verificar_com_br = true;
+        };
 
         let index_promocao = caixa_baixa.indexOf("promoção");
         let index_gratis = caixa_baixa.indexOf("grátis");
-        let verificar_spam = false
+        let verificar_spam = false;
         if (index_promocao >= 0) {
-            verificar_spam = true
+            verificar_spam = true;
         }
         else if (index_gratis >= 0) {
-            verificar_spam = true
-        }
+            verificar_spam = true;
+        };
 
-        let primeira_letra = mensagem[0];
+        let primeira_letra = sem_espaco_inicioefim[0];
         console.log(primeira_letra);
 
         let tamanho_mensagem_comespaco = mensagem.length;
@@ -73,15 +82,16 @@
 
         let validar_bob = caixa_baixa.indexOf("bob")
         console.log(validar_bob)
-        div_resultado.innerHTML = ""
+        div_resultado.innerHTML = `<h3 id="id_classificacao">Classificação da mensagem:</h3>`
+        id_classificacao.innerHTML = "Classificação da mensagem:"
         if (sem_espaco_inicioefim == "") {
-            div_resultado.innerHTML = `Digite uma mensagem válida.`;
+            div_resultado.innerHTML += `Digite uma mensagem válida.`;
         }
         else if (tamanho_mensagem_semespaco < 10) {
-            div_resultado.innerHTML = "Mensagem muito curta para análise.";
+            div_resultado.innerHTML += "Mensagem muito curta para análise.";
         }
         else {
-            div_resultado.innerHTML =
+            div_resultado.innerHTML +=
                 `
             A mensagem contém Eu no início: ${inicio_frase}<br>
             A mensagem contém .com ou .br no fim? ${fim_frase}<br>
@@ -94,16 +104,21 @@
             if (validar_bob >= 0) {
                 div_resultado.innerHTML += "<br>Usuário Bob mencionado na mensagem";
             }
+            else {
+                div_resultado.innerHTML += "<br>Usuário Bob não mencionado na mensagem";
+            }
+            if (verificar_com_br == true) {
+                id_classificacao.innerHTML += "<span style='color:blue;'><br>Mensagem com Link</span>"
+            }
             if (fim_frase == true) {
                 div_resultado.innerHTML += "<br>A mensagem contém um possível link."
-                h3_classificacao.innerHTML += "<span style='color:blue;'><br>Mensagem com Link</span>"
             }
             if (verificar_spam == true) {
                 div_resultado.innerHTML += "<br>Possível mensagem de spam detectada."
-                h3_classificacao.innerHTML += "<span style='color:red;'> <br> Mensagem suspeita</span>"
+                id_classificacao.innerHTML += " <span style='color:red;'> <br> Mensagem suspeita</span>"
             }
-            if (verificar_spam == false && fim_frase == false) {
-                h3_classificacao.innerHTML += "<span style='color:green;'> <br> Mensagem normal</span>"
+            if (verificar_spam == false && verificar_com_br == false) {
+                id_classificacao.innerHTML += "<span style='color:green;'> <br> Mensagem normal</span>"
             }
             if (inicio_frase == true) {
                 div_resultado.innerHTML += "<br>A mensagem parece estar escrita em primeira pessoa."
