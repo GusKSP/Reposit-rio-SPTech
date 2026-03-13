@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Mensagens Suspeitas</title>
+</head>
+
+<body>
+    <h1>Detector de Mensagens Suspeitas</h1>
+    <div>
+        <input type="search" id="ipt_mensagem">
+        <button onclick=AnalisarMensagem()>Analisar Mensagem</button>
+        <div id="div_resultado"></div>
+    </div>
+</body>
+<script>
+
+    function AnalisarMensagem() {
+        let mensagem = ipt_mensagem.value;
+
+        let sem_espaco_inicioefim = mensagem.trim();
+        console.log(sem_espaco_inicioefim);
+
+
+        let caixa_alta_comespaco = mensagem.toUpperCase();
+        let caixa_baixa_comespaco = mensagem.toLowerCase();
+
+
+        let caixa_alta = sem_espaco_inicioefim.toUpperCase();
+        let caixa_baixa = sem_espaco_inicioefim.toLowerCase();
+
+        let inicio_frase = caixa_baixa.startsWith("eu");
+        console.log(`Inicio ${inicio_frase}`);
+
+        let fim_frase_com = sem_espaco_inicioefim.endsWith(".com");
+        let fim_frase_br = mensagem.endsWith(".br");
+
+        let fim_frase = false
+
+        if (fim_frase_com == true) {
+            fim_frase = fim_frase_com;
+        }
+        else if (fim_frase_br == true) {
+            fim_frase = fim_frase_br;
+        };
+        console.log(`fim ${fim_frase}`);
+
+
+
+        let index_promocao = caixa_baixa.indexOf("promoção");
+        let index_gratis = caixa_baixa.indexOf("grátis");
+        let verificar_spam = false
+        if (index_promocao >= 0) {
+            verificar_spam = true
+        }
+        else if (index_gratis >= 0) {
+            verificar_spam = true
+        }
+
+        let primeira_letra = mensagem[0];
+        console.log(primeira_letra);
+
+        let tamanho_mensagem_comespaco = mensagem.length;
+        console.log(tamanho_mensagem_comespaco);
+
+        let tamanho_mensagem_semespaco = sem_espaco_inicioefim.length
+
+        let ultima_letra = sem_espaco_inicioefim[tamanho_mensagem_semespaco - 1]
+
+        let validar_bob = caixa_baixa.indexOf("bob")
+        console.log(validar_bob)
+        div_resultado.innerHTML = ""
+        if (sem_espaco_inicioefim == "") {
+            div_resultado.innerHTML = `Digite uma mensagem válida.`;
+        }
+        else if (tamanho_mensagem_semespaco < 10) {
+            div_resultado.innerHTML = "Mensagem muito curta para análise.";
+        }
+        else {
+            div_resultado.innerHTML =
+                `A mensagem contém Eu no início: ${inicio_frase}<br>
+            A mensagem contém .com ou .br no fim? ${fim_frase}<br>
+            Primeira letra da mensagem: ${primeira_letra}<br>
+            Ultima letra da mensagem: ${ultima_letra}<br>
+            `
+            if (validar_bob >= 0) {
+                div_resultado.innerHTML += "<br>usuário Bob mencionado na mensagem";
+            }
+            if (fim_frase == true) {
+                div_resultado.innerHTML += "<br>A mensagem contém um possível link.";
+            }
+            if (verificar_spam == true) {
+                div_resultado.innerHTML += "<br>ossível mensagem de spam detectada."
+            }
+            if (inicio_frase == true) {
+                div_resultado.innerHTML += "<br>A mensagem parece estar escrita em primeira pessoa."
+            }
+        }
+    }
+</script>
+
+</html>

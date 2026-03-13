@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validacao#Testo</title>
+</head>
+
+<body>
+    <input type="search" id="ipt_texto"><br>
+    <button onclick="Validar()">Validar</button><br><br>
+
+    <input type="search" id="password" placeholder="Senha">
+
+    <select id="opcoes">
+        <option value="Opcao_1">Opcao_1</option>
+        <option value="Opcao_2">Opcao_2</option>
+    </select>
+
+</body>
+<script>
+    function Validar() {
+        let frase = ipt_texto.value;
+        // Retirar Todos os espaços
+        //Não contém espaço no fim e no meio da frase.
+        let cpf_limpo = frase.trim();
+        console.log(`CPF com tratamento ${cpf_limpo}`);
+        console.log(`CPF sem tratamento ${frase}`);
+        let Sem_Espaco_Mesmo = frase.replaceAll(" ", "");
+        console.log(`Ver sem espaço: ${Sem_Espaco_Mesmo}`);
+        let tamanho_sem_espaco_tudo = Sem_Espaco_Mesmo.length;
+
+
+        // Deixar em caixa alta ou Baixa:
+        let Caixa_alta = frase.toUpperCase();
+        console.log(Caixa_alta);
+        let Caixa_baixa = frase.toLowerCase();
+        console.log(Caixa_baixa);
+
+
+        // Verificar se frase contém algo definido no início e no fim
+        let contem_Bob_inicio = Sem_Espaco_Mesmo.startsWith("Bob");
+        console.log(`O texto começa com Bob? ${contem_Bob_inicio}`);
+        let contem_Bob_fim = Sem_Espaco_Mesmo.endsWith("Bob");
+        console.log(`O texto termina com Bob? ${contem_Bob_fim}`);
+
+        //Verificar tamanho da frase
+        let tamanho_frase = frase.length;
+        let tamanho_sem_espaco = cpf_limpo.length;
+        console.log(`O tamanho da frase é: ${tamanho_frase}`);
+        console.log(`O tamanho da frase sem espaços no inicio e no fim é: ${tamanho_sem_espaco}`);
+        console.log(`O tamanho da frase sem espaços em tudo: ${tamanho_sem_espaco_tudo}`);
+
+        let indice_Bob_frase = (Caixa_baixa.indexOf("bob") + 1);
+
+        //Obter primeira letra >>> Com Colchetes "[]"
+        let primeira_letra = Sem_Espaco_Mesmo[0];
+        console.log("Primeira letra da frase: " + primeira_letra);
+        let ultima_letra = Sem_Espaco_Mesmo[(tamanho_sem_espaco_tudo - 1)];
+        console.log("Ultima letra da frase: " + ultima_letra);
+        if (indice_Bob_frase == 0) {
+            console.log("A frase não contém Bob!");
+        } else {
+            console.log("A palavra Bob foi encontra na posição: " + indice_Bob_frase)
+        };
+
+        document.getElementById("password").value = ""
+    }
+</script>
+
+</html>
