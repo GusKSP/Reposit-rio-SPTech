@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Aula 07</title>
+</head>
+<body>
+    <h1>Desafio: Adivinhe o Ranking da Competição</h1>
+    <span>Adivinhe o nome do competidor de Ranking 1</span>
+    <input type="text" name="Roberto" id="id_palpite_0"><br>
+    <span>Adivinhe o nome do competidor de Ranking 2</span>
+    <input type="text" name="Carlos" id="id_palpite_1"><br>
+    <span>Adivinhe o nome do competidor de Ranking 3</span>
+    <input type="text" name="Chico" id="id_palpite_2"><br>
+    <span>Adivinhe o nome do competidor de Ranking 4</span>
+    <input type="text" name="Bento" id="id_palpite_3"><br>
+    <span>Adivinhe o nome do competidor de Ranking 5</span>
+    <input type="text" name="Zezedecamargoeluciano" id="id_palpite_4"><br><br>
+    <button onclick="DarPalpite()">Exibir Resultado</button>
+    <p id="id_resultado"></p>
+</body>
+<script>
+    let Tentativas = 0;
+    let NomesCompetidores=["Roberto","Carlos","Chico","Bento","Zezedecamargoeluciano"];
+    function DarPalpite(){
+        let NomesAcertos = []
+        let ContagemAcertos = 0
+        let ContagemErros = 0
+        let NomesErros = []
+        Tentativas++;
+        let palpite_0=id_palpite_0.value;
+        let palpite_1=id_palpite_1.value;
+        let palpite_2=id_palpite_2.value;
+        let palpite_3=id_palpite_3.value;
+        let palpite_4=id_palpite_4.value;
+        id_resultado.innerHTML = ""
+
+        if(palpite_0==NomesCompetidores[0]){
+            NomesAcertos += [NomesCompetidores[0]]+", "
+            ContagemAcertos ++
+        }
+        else{
+            ContagemErros ++
+            NomesErros += NomesCompetidores[0]+", ";
+        }
+        if(palpite_1==NomesCompetidores[1]){
+            NomesAcertos += [NomesCompetidores[1]]+", "
+            ContagemAcertos ++
+        }
+        else{
+            ContagemErros ++
+            NomesErros += NomesCompetidores[1];
+        }
+        if(palpite_2==NomesCompetidores[2]){
+            NomesAcertos += [NomesCompetidores[2]]+", "
+            ContagemAcertos ++
+        }  
+        else{
+            ContagemErros ++
+            NomesErros += NomesCompetidores[2]+", ";
+        }
+        if(palpite_3==NomesCompetidores[3]){
+            NomesAcertos += [NomesCompetidores[3]]+", "
+            ContagemAcertos ++
+        }
+        else{
+            ContagemErros ++
+            NomesErros += NomesCompetidores[3]+", ";
+        }
+        if(palpite_4==NomesCompetidores[4]){
+            NomesAcertos += [NomesCompetidores[4]]+", "
+            ContagemAcertos ++
+        }
+        else{
+            ContagemErros ++
+            NomesErros += NomesCompetidores[4]+", ";
+        }
+        id_resultado.innerHTML += `Jogadores Corretos: ${NomesAcertos}<br>
+        Jogadores errados: ${NomesErros}<br>
+        Quantidade de Acertos: ${ContagemAcertos} <br>
+        Quantidade de Erros: ${ContagemErros}<br>
+        Tentativas: ${Tentativas}<br>`
+        if(ContagemAcertos >= 3){
+            id_resultado.innerHTML += "Você conhece bem essa competição!"
+        }
+        else{
+            id_resultado.innerHTML += "Você precisa acompanhar mais essa competição!"
+        }
+    }
+</script>
+</html>
