@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="valor" id="ipt_valor">
+    <button onclick="Mostrar()">ver Cafés</button>
+    <div id="id_resultado"></div>
+</body>
+<script>
+    let qtd_cafes = Number(ipt_valor.value);
+    let frase_final = "";
+    function Mostrar() {
+        for (let i = 0; i < qtd_cafes; i++) {
+            frase_final += "Mostrando o café ${ }, <br>"
+        };
+        id_resultado.innerHTML += frase_final
+    }
+</script>
+
+</html>

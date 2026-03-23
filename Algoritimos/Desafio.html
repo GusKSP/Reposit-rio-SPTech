@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio230326</title>
+</head>
+
+<body>
+    <h1>Invasão de Impel Down</h1>
+    <input type="number" name="Quantidade de batalhas" id="ipt_qtdBatalhas" placeholder="Batalhas"><br>
+    <input type="number" name="Quantidade de marinheiros em cada batalha" id="ipt_qtdMarinheiros"
+        placeholder="Marinheiros"><br>
+    <input type="number" name="Quantidade de carnes disponíveis" id="ipt_qtdCarnes" placeholder="Carnes"><br>
+    <button onclick="Batalhar()">Batalhar</button>
+    <div>
+        <p id="id_resultado"></p>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function Batalhar() {
+        let Pts_energia = 100
+
+
+        let Batalhas = Number(ipt_qtdBatalhas.value);
+        let Marinheiros = 0;
+        let Carne = Number(ipt_qtdCarnes.value);
+        let Total_Marinheiros_Inicio = Marinheiros * Batalhas;
+        let Total_Marinheiros = Marinheiros * Batalhas;
+        let BatalhaResultado = "";
+        let CarnesAntes = Carne;
+        let Rounds = 0
+        let Fim_Batalha = ""
+        if (Pts_energia > 0 && Total_Marinheiros > 0) {
+            for (; Rounds < Batalhas; Rounds++) {
+                Marinheiros = Number(ipt_qtdMarinheiros.value)
+
+                Pts_energia = Pts_energia - 10
+
+
+                if (Pts_energia > 0) {
+                    Pts_energia = Pts_energia % (5 * Marinheiros)
+                    if (Pts_energia >= 5) {
+                        BatalhaResultado = "Luffy Venceu a batalha";
+                    }
+                    else {
+                        if (Carne > 0) {
+                            Carne--
+                            Pts_energia = 100
+                        }
+                    }
+                }
+                else {
+                    if (Carne > 0) {
+                        Carne--
+                        Pts_energia = 100
+                    }
+                }
+
+                Total_Marinheiros = Total_Marinheiros - Marinheiros;
+
+
+                if (Marinheiros > 0 && Carne >= 1) {
+                    Carne--
+                    Pts_energia = 100;
+                };
+                if (Marinheiros <= 0 && Pts_energia >= 0) {
+                    BatalhaResultado = "Luffy Venceu a batalha";
+                }
+                else if (Marinheiros <= 0 && Pts_energia <= 1 && Carne > 0) {
+                    Carne--
+                    Pts_energia = 100;
+                    BatalhaResultado = "Luffy Venceu a batalha";
+                }
+                else {
+                    BatalhaResultado = "Luffy Perdeu a batalha";
+                }
+                Fim_Batalha += `${Rounds + 1}º batalha iniciada! <br>
+            Quantidade de energia inicial: 100⚡.
+            <br>
+            ${BatalhaResultado} contra ${Marinheiros} marinheiro(s)!        <br>
+            Carnes Restantes ao fim da batalha: 🥩${Carne}
+            <br>
+            Energia Restante no fim da batalha: ⚡${Pts_energia}
+            <br><br>`
+            }
+            id_resultado.innerHTML = Fim_Batalha
+        }
+    }
+</script>
