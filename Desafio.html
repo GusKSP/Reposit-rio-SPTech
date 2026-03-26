@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio230326</title>
+</head>
+
+<body>
+    <h1>Invasão de Impel Down</h1>
+    <input type="number" name="Quantidade de batalhas" id="ipt_qtdBatalhas" placeholder="Batalhas"><br>
+    <input type="number" name="Quantidade de marinheiros em cada batalha" id="ipt_qtdMarinheiros"
+        placeholder="Marinheiros"><br>
+    <input type="number" name="Quantidade de carnes disponíveis" id="ipt_qtdCarnes" placeholder="Carnes"><br>
+    <button onclick="Batalhar()">Batalhar</button>
+    <div>
+        <p id="id_resultado"></p>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    /*
+    Comandos: 
+
+    A cada batalha iniciada, deve aparecer valores de: 
+    ----------------------------------------
+
+    1° Batalha Iniciada:
+    Quantidade de Energia Inicial: 100
+
+    Resultado: Luffy saiu vitorioso, derrotando 30 marinheiro(s)
+    ⚡ Energia Restante no Final da Batalha: 50
+    🥩 Carnes Restantes no Final da Batalha: 0
+
+    ----------------------------------------
+
+    2° Batalha Iniciada:
+    Quantidade de Energia Inicial: 40
+
+    Resultado: Luffy foi derrotado, derrotando 8 marinheiro(s)
+    ⚡ Energia Restante no Final da Batalha: 0
+    🥩 Carnes Restantes no Final da Batalha: 0
+
+    ----------------------------------------
+ 
+    🛞 Não é possível iniciar a 3º batalha, acabou a carne e a energia.
+
+    ----------------------------------------
+ 
+    🛞 Não é possível iniciar a 4º batalha, acabou a carne e a energia.
+    */
+    function Batalhar() {
+        let Energia = 100
+        let Batalhas = Number(ipt_qtdBatalhas.value);
+        let Marinheiros = Number(ipt_qtdMarinheiros.value);
+        let Carnes = Number(ipt_qtdCarnes.value);
+        let Derrotados = 0;
+        id_resultado.innerHTML = "";
+        let Resultado = 'vitorioso';  //Valor booleano, retornando resultados de 'vitorioso' ou 'perdedor'
+        // Para cada Luta iniciada, Luffy Gastará 10 de energia
+        let Energia_inicial = 100;
+        let Carnes_Iniciais = Number(ipt_qtdCarnes.value);
+
+        console.log('Antes do for');
+        for (let Luta = 0; Luta < Batalhas; Luta++) {
+            if (Resultado == 'Perdedor') {
+                id_resultado.innerHTML += "🛞 Não é possível iniciar a ${Luta}º batalha, acabou a carne e a energia."
+                console.log('Se luffy já perdeu anteriormente');
+            }
+            else if (Resultado == 'vitorioso') {
+                console.log('Condição se vitória');
+                if (Energia <= 0) {
+                    console.log('Verificando se carne está disponível');
+                    if (Carne < 1) {
+                        console.log('Carne não está disponível');
+                        Resultado = 'perdedor'
+                    }
+                    else if (Carne >= 1) {
+                        console.log('Carne está disponível');
+                        Carne--;
+                        Energia = Energia + 100;
+                        Energia_inicial = Energia;
+                        console.log('Verificando se a energia ainda está menor que zero');
+                        if (Energia > 0) {
+                            console.log('Energia não está menor que zero');
+                            Derrotados = (Energia - 10) / 5
+                            console.log('verificando se a quantidade de energia é necessária para derrotar todos os marinheiros');
+                            Energia = Energia - (10 + (5 * Marinheiros));
+                            if (Derrotados >= Marinheiros) {
+                                console.log('Qtd de energia maior que a necessária para derrotar os marinheiros');
+                                Derrotados = Marinheiros
+                                Resultado = 'vitorioso'
+                            }
+                            else if (Derrotados >= 0) {
+                                console.log('Qtd de energia menor que a quantidade mínima necessária para derrotar todos os marinheiros ' + Derrotados);
+                                Resultado = 'perdedor'
+                            }
+                            else {
+                                console.log('Qtd de energia menor que zero!!!');
+                                Derrotados = 0
+                                Resultado = 'perdedor'
+                            };
+                        }
+                        else {
+                            console.log('Caso, mesmo após comer a carne, a energia continue menor que zero');
+                            console.log('Energia ainda ESTÁ menor que zero');
+                            Resultado = 'perdedor'
+
+                        }
+                    }
+                    else {
+                        id_resultado.innerHTML += "Erro na lógica da carne"
+                    }
+                }
+                else {
+                    Derrotados = (Energia - 10) / 5
+                    console.log('verificando se a quantidade de energia é necessária para derrotar todos os marinheiros');
+                    Energia = Energia - (10 + (5 * Marinheiros));
+                    if (Derrotados >= Marinheiros) {
+                        console.log('Qtd de energia maior que a necessária para derrotar os marinheiros');
+                        Derrotados = Marinheiros
+                        Resultado = 'vitorioso'
+                    }
+                    else if (Derrotados >= 0) {
+                        console.log('Qtd de energia menor que a quantidade mínima necessária para derrotar todos os marinheiros ' + Derrotados);
+                        Resultado = 'perdedor'
+                    }
+                    else {
+                        console.log('Qtd de energia menor que zero!!!');
+                        Derrotados = 0
+                        Resultado = 'perdedor'
+                    };
+
+                }
+            }
+            else {
+                id_resultado.innerHTML += "Resultado Errado"
+            }
+        }
+    }
+</script>
