@@ -1,0 +1,317 @@
+/* Css utilizado no site TIL-ICE */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+.title_logo {
+    cursor: default;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.title1 {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.subtitle {
+    cursor: default;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+span {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #F6F7F7;
+    align-items: flex-start;
+}
+
+p {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 300;
+    font-size: x-large;
+    font-style: normal;
+    color: #F6F7F7;
+    margin: 0.5em 0%;
+    padding: 0%;
+    align-items: flex-start;
+}
+
+
+
+
+.div_vertical_align {
+    display: flex;
+    height: fill;
+    width: fit-content;
+    align-items: center;
+}
+
+.div_header {
+    background-color: #081C29;
+    height: 130px;
+    width: fill;
+    margin: 0%;
+    border: 0%;
+    padding: 0% 2rem 0% 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #F6F7F7;
+}
+
+.header_imagens {
+    height: 4.5em;
+    margin: 0% 1em;
+    align-self: center;
+    border-radius: 50%;
+}
+
+.div_nav {}
+
+.header_esquerda {
+    display: flex;
+    align-content: baseline;
+    align-items: center;
+}
+
+.text_corner {
+    text-align: start;
+    padding: 10px;
+}
+
+.header_direita {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.group_center {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    justify-content: space-between;
+    margin: 0%;
+    padding: 0%;
+    flex-direction: row;
+}
+
+.group_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.group_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.group_align_center {
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.group_individual {
+    width: 200px;
+}
+
+.group_fit {
+    margin: 0%;
+    padding: 0% 8rem;
+    justify-content: space-between;
+}
+
+.group_left {
+    display: flex;
+    align-content: flex-start;
+    width: fit-content;
+    align-items: flex-start;
+    margin: 0%;
+    padding: 0%;
+    flex-direction: column;
+}
+
+.group_right {
+    display: flex;
+    width: fit-content;
+    align-content: flex-end;
+    align-items: flex-end;
+    margin: 0%;
+    padding: 0%;
+    flex-direction: column;
+}
+
+.div_margin1 {
+    margin: 0em 1rem;
+}
+
+.div_margin3 {
+    margin: 0em 3rem;
+}
+
+.div_article {
+    background-color: #0D2333;
+    width: 100%;
+    margin: 0%;
+    min-height: 894px;
+    height: fit-content;
+}
+
+.div_article_grupo {
+    background-color: #F6F7F7;
+    width: 100%;
+    margin: 0%;
+    min-height: 894px;
+    height: fit-content;
+}
+
+.div_foto_integrante {
+    min-width: fit-content;
+    min-height: fit-content;
+    width: fit-content;
+    height: 7rem;
+    border-radius: 1em;
+}
+
+.div_footer {}
+
+
+.div_espaçamento {
+    min-height: 2rem;
+}
+
+.div_pg_1_bg {
+    background-image: url(https://cdn.discordapp.com/attachments/803916438452305940/1487906167093989386/BG-TilIce-P1.png?ex=69cad81a&is=69c9869a&hm=1397f2a2dbadee1b30bdc286182a82a2204889527213b05f6556d99003ee9848&);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 894px;
+    height: fit-content;
+    margin: 0%;
+}
+
+.button_header {
+    cursor: pointer;
+    border-color: transparent;
+    border-radius: 0%;
+    border: 0%;
+    background-color: transparent;
+    color: #F6F7F7;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 2rem;
+    margin: 0em 0em 0em 1em;
+}
+
+.innactivity_component {
+    cursor: default;
+    color: #F6F7F7;
+}
+
+.button_basic {
+    cursor: pointer;
+    border-radius: 0.5em;
+    color: #F6F7F7;
+    margin: 0%;
+    padding: 0%;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 1.5rem;
+    min-height: 60px;
+    min-width: 180px;
+    padding: 0% 0.5em;
+}
+
+.button_basic_header {
+    cursor: pointer;
+    border-radius: 0.5em;
+    color: #F6F7F7;
+    padding: 10px;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 1.5rem;
+    min-height: 60px;
+    min-width: 180px;
+    border: 5em;
+    margin: 0em 0em 0em 1em;
+    padding: 0% 0.5em;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    color: transparent;
+    border-color: transparent;
+    height: fit-content;
+    width: fit-content;
+    padding: 0%;
+    margin: 0%;
+}
+
+
+
+.color_1 {
+    background-color: #1AB8C4;
+}
+
+.color_2 {
+    background-color: #F6F7F7;
+}
+
+.color_text_2 {
+    color: #F6F7F7;
+}
+
+
+.color_3 {
+    background-color: #0D2333;
+}
+
+.color_text_3 {
+    color: #0D2333;
+}
+
+
+.color_4 {
+    background-color: #DFE2EF;
+}
+
+.color_5 {
+    background-color: #081C29;
+}
+
+.color_6 {
+    background-color: #B8B8B9;
+}
+
+
+
+
+.border_color_1 {
+    border: 0.2rem solid;
+    border-color: #F6F7F7;
+}
+
+body {
+    padding: 0%;
+    border: 0%;
+    margin: 0%;
+    gap: 0%;
+}
