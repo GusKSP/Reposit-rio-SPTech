@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD_SANJI</title>
+</head>
+<body>
+    <span>Cadastrar Comida:</span>
+    <input type="text" id="ipt_cadastro_comida"> <br><br>
+    <button onclick="Cadastrar()">Cadastrar!</button>
+
+    <button onclick="Verificar()">Verificar Quantidade</button><br><br>
+
+    <span>Pesquisar comida</span>
+    <input type="text" id="ipt_pesquisa" placeholder="Pesquisar">
+    <button onclick="Pesquisar()">🔍</button><br><br>
+
+    <button onclick="Exibir()">Exibir Estoque</button>
+</body>
+
+</html>
+
+<script>
+    let Com_cad = []
+    let Com_name = ""
+    function Cadastrar(){
+        Com_name = ipt_cadastro_comida.value;
+        Com_cad.push (Com_name);
+        console.log(Com_cad);
+    }
+    function Verificar(){
+        if (Com_cad.length < 3){
+            alert("Desse jeito, o Luffy devora até o navio");
+        }
+        else if (Com_cad.length < 7){
+            alert("O comilão do Luffy não vai deixar sobrar nenhuma comida");
+        }
+        else if (Com_cad.length < 10){
+            alert("Assim, talvez sobre um pouco para a tripulação");
+        }
+        else{
+            alert("Desse jeito vai ter comida para todo mundo e ainda consigo guardar um pouco para a senhorita Nami!");
+        };
+    }
+    function Pesquisar(){
+        let Search = ipt_pesquisa.value
+        if (Com_cad .indexOf(Search)>=0){
+            alert('Temos a comida '+Search+' e há ' + Com_cad .indexOf(Search)+' unidade(s) dela' );
+        }
+        else{
+            alert(`Alguém vai ter que comprar ${Search}, tá fazendo falta...`)
+        }
+    }
+    function Exibir(){
+        let Comidas = Com_cad.length
+        console.log (Comidas)
+        let Qtd_estoque = 0
+        let Nome_comida = ""
+        console.log(Com_cad)
+    }
+
+
+</script>
