@@ -122,6 +122,9 @@
         div_resultado.innerHTML = ""
         let Atualizacao_Com_Cad = []
         let Total_comidas_informadas = 0
+        let Tamanho_Com_Cad_original = Number(Com_cad.length)
+        let Itens_removidos = 0
+        let Contador = 0
         if (!Com_cad.includes(Remocao)) {
             div_resultado.innerHTML = "Erro ao encontrar comida mensionada (verifique se o nome informado está correto)"
         }
@@ -134,7 +137,7 @@
 
 
         if (Com_cad.includes(Remocao) && QtdRemocoes <= Com_cad.length && QtdRemocoes > 0) {
-            let Tamanho_Com_Cad_original = Number(Com_cad.length)
+
             console.log(Tamanho_Com_Cad_original)
             for (i = 0; i < Com_cad.length; i++) {
                 if (Remocao == Com_cad[i]) { Total_comidas_informadas++ };
@@ -143,9 +146,9 @@
                 div_resultado.innerHTML = "Não é possível retirar mais comidas do que se tem no estoque!"
             }
             else {
-                let Itens_removidos = 0
-                for (Contador = 0; Contador < Com_cad.length; Contador++) {
-                    if (Remocao != Com_cad[Contador] || Itens_removidos != QtdRemocoes) { Atualizacao_Com_Cad.push(Com_cad[Contador]) }
+
+                for (; Contador < Com_cad.length; Contador++) {
+                    if (Remocao != Com_cad[Contador] || Itens_removidos > QtdRemocoes) { Atualizacao_Com_Cad.push(Com_cad[Contador]) }
                     Itens_removidos = Tamanho_Com_Cad_original - Number(Atualizacao_Com_Cad.length)
                 }
                 Com_cad = Atualizacao_Com_Cad;
