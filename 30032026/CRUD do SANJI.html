@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD_SANJI</title>
 </head>
+
 <body>
     <span>Cadastrar Comida:</span>
-    <input type="text" id="ipt_cadastro_comida"> <br><br>
+    <input type="text" id="ipt_cadastro_comida" placeholder="Cadastrar"> <br><br>
     <button onclick="Cadastrar()">Cadastrar!</button>
 
     <button onclick="Verificar()">Verificar Quantidade</button><br><br>
@@ -16,7 +18,21 @@
     <input type="text" id="ipt_pesquisa" placeholder="Pesquisar">
     <button onclick="Pesquisar()">🔍</button><br><br>
 
-    <button onclick="Exibir()">Exibir Estoque</button>
+    <button onclick="Exibir()">Exibir Estoque</button><br><br>
+
+    <span>Insira o nome da comida que quer alterar</span>
+    <input type="text" id="ipt_nome_comida" placeholder="Nome da comida"><br>
+    <span>Insira o novo nome da comida</span>
+    <input type="text" id="ipt_novo_nome" placeholder="Novo nome"><br>
+    <button onclick="AlterarNome()">Alterar nome</button><br><br>
+
+    <span>Insira o nome da comida que quer remover</span>
+    <input type="text" id="ipt_comida_remove" placeholder="Nome da comida"><br>
+    <span>Insira a quantidade que quer remover</span>
+    <input type="number" id="ipt_comida_qtd_remove" placeholder="Quantidade"><br>
+    <button onclick="Remova()">Remover Comida</button><br><br>
+
+    <div id="div_resultado"></div>
 </body>
 
 </html>
@@ -24,40 +40,118 @@
 <script>
     let Com_cad = []
     let Com_name = ""
-    function Cadastrar(){
-        Com_name = ipt_cadastro_comida.value;
-        Com_cad.push (Com_name);
+    function Cadastrar() {
+        Com_name = ipt_cadastro_comida.value.trim();
+        if (Com_name != '') {
+            Com_cad.push(Com_name);
+            div_resultado.innerHTML = "Comida Inserida Com Sucesso!"
+        }
+        else {
+            div_resultado.innerHTML = "Não foi possível inserir o valor informado"
+        }
         console.log(Com_cad);
     }
-    function Verificar(){
-        if (Com_cad.length < 3){
+    function Verificar() {
+        if (Com_cad.length < 3) {
             alert("Desse jeito, o Luffy devora até o navio");
         }
-        else if (Com_cad.length < 7){
+        else if (Com_cad.length < 7) {
             alert("O comilão do Luffy não vai deixar sobrar nenhuma comida");
         }
-        else if (Com_cad.length < 10){
+        else if (Com_cad.length < 10) {
             alert("Assim, talvez sobre um pouco para a tripulação");
         }
-        else{
+        else {
             alert("Desse jeito vai ter comida para todo mundo e ainda consigo guardar um pouco para a senhorita Nami!");
         };
     }
-    function Pesquisar(){
+    function Pesquisar() {
+        let Qtd_Comidas = 0
         let Search = ipt_pesquisa.value
-        if (Com_cad .indexOf(Search)>=0){
-            alert('Temos a comida '+Search+' e há ' + Com_cad .indexOf(Search)+' unidade(s) dela' );
+        let gravacao = ""
+        if (Com_cad.includes(Search)) {
+            for (For_com = 0; For_com < Com_cad.length; For_com++) {
+                if (Search == Com_cad[For_com]) { Qtd_Comidas++ };
+                gravacao = `Temos a comida ${Search} e há ${Qtd_Comidas} unidade(s) dela!`
+            }
         }
-        else{
-            alert(`Alguém vai ter que comprar ${Search}, tá fazendo falta...`)
+        else {
+            gravacao = `Alguém vai ter que comprar ${Search}, tá fazendo falta...`
+        }
+        div_resultado.innerHTML = gravacao
+    }
+    function Exibir() {
+        let Contador_exibicao = 0
+        let gravacao = ""
+
+        let ListaVazia = []
+
+        while (Contador_exibicao < Com_cad.length) {
+            let Total_unidade = 0;
+            let Find_in_comcad = Com_cad[Contador_exibicao]
+
+            if (!ListaVazia.includes(Find_in_comcad)) {
+                for (Parametro = 0; Parametro < Com_cad.length; Parametro++) {
+                    if (Com_cad[Parametro] == Find_in_comcad) { Total_unidade++ };
+                }
+                gravacao += `${Find_in_comcad} (${Total_unidade} unidade(s))<br>`;
+                ListaVazia.push(Find_in_comcad);
+
+            }
+            Contador_exibicao++
+        }
+        div_resultado.innerHTML = gravacao
+
+    }
+    function AlterarNome() {
+        let Comida_Nome = ipt_nome_comida.value;
+        let Novo_nome = ipt_novo_nome.value.trim();
+        if (Novo_nome == "") {
+            div_resultado.innerHTML = "Valor invalido para o novo nome"
+        }
+        else if (Com_cad.includes(Comida_Nome)) {
+            Com_cad[Com_cad.indexOf(Comida_Nome)] = Novo_nome
+        }
+        else {
+            div_resultado.innerHTML = "Erro ao encontrar comida mensionada (verifique se o nome informado está correto)"
         }
     }
-    function Exibir(){
-        let Comidas = Com_cad.length
-        console.log (Comidas)
-        let Qtd_estoque = 0
-        let Nome_comida = ""
-        console.log(Com_cad)
+    function Remova() {
+        let Remocao = ipt_comida_remove.value
+        let QtdRemocoes = Number(ipt_comida_qtd_remove.value)
+        div_resultado.innerHTML = ""
+        let Atualizacao_Com_Cad = []
+        let Total_comidas_informadas = 0
+        if (!Com_cad.includes(Remocao)) {
+            div_resultado.innerHTML = "Erro ao encontrar comida mensionada (verifique se o nome informado está correto)"
+        }
+        if (QtdRemocoes > Com_cad.length) {
+            div_resultado.innerHTML = "Não é possível retirar mais comidas do que se tem no estoque!"
+        }
+        if (QtdRemocoes <= 0) {
+            div_resultado.innerHTML = "Coloque o valor que deseja remover maior que 0!"
+        }
+
+
+        if (Com_cad.includes(Remocao) && QtdRemocoes <= Com_cad.length && QtdRemocoes > 0) {
+            let Tamanho_Com_Cad_original = Number(Com_cad.length)
+            console.log(Tamanho_Com_Cad_original)
+            for (i = 0; i < Com_cad.length; i++) {
+                if (Remocao == Com_cad[i]) { Total_comidas_informadas++ };
+            };
+            if (Total_comidas_informadas < QtdRemocoes) {
+                div_resultado.innerHTML = "Não é possível retirar mais comidas do que se tem no estoque!"
+            }
+            else {
+                let Itens_removidos = 0
+                for (Contador = 0; Contador < Com_cad.length; Contador++) {
+                    if (Remocao != Com_cad[Contador] || Itens_removidos != QtdRemocoes) { Atualizacao_Com_Cad.push(Com_cad[Contador]) }
+                    Itens_removidos = Tamanho_Com_Cad_original - Number(Atualizacao_Com_Cad.length)
+                }
+                Com_cad = Atualizacao_Com_Cad;
+                div_resultado.innerHTML = `${QtdRemocoes} itens das comidas que continham o nome "${Remocao}" das cadastradas foram removidas`
+            }
+        }
     }
 
 
