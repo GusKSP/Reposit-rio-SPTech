@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino de while</title>
+</head>
+
+<body>
+
+    <div name="Alterar Exercicio">
+        <select name="alterar exercicio" id="alt_ex" onchange="MudarEx()">
+            <option value="parte_1">parte_1</option>
+            <option value="parte_2">parte_2</option>
+            <option value="parte_3">parte_3</option>
+            <option value="parte_4">parte_4</option>
+            <option value="parte_5">parte_5</option>
+            <option value="parte_6">parte_6</option>
+            <option value="parte_7">parte_7</option>
+            <option value="parte_8">parte_8</option>
+            <option value="parte_9">parte_9</option>
+            <option value="parte_10">parte_10</option>
+            <option value="parte_11">parte_11</option>
+        </select>
+    </div>
+    <div id="parte_1" style="display: block;;">
+        <Button onclick="Ex1v1()">Contar v1</Button><br>
+        <Button onclick="Ex1v2()">Contar v2</Button>
+        <div id="Res_Ex1"></div>
+    </div>
+    <div id="parte_2" style="display: none;">
+        <Button onclick="Ex2v1()">Diga algo sob a matéria de algoritmos v1</Button><br>
+        <Button onclick="Ex2v2()">Diga algo sob a matéria de algoritmos v2</Button>
+        <div id="Res_Ex2"></div>
+    </div>
+    <div id="parte_3" style="display: none;">
+        <input type="text" name="Frase sobre algoritmos" id="ipt_ex3"><br>
+        <Button onclick="Ex3v1()">Diga algo sob a matéria de algoritmos v1</Button><br>
+        <Button onclick="Ex3v2()">Diga algo sob a matéria de algoritmos v2</Button>
+        <div id="Res_Ex3"></div>
+    </div>
+    <div id="parte_4" style="display: none;">
+        <Button onclick="Ex4v1()">S2 Pares v1</Button><br>
+        <Button onclick="Ex4v2()">S2 Pares v2</Button>
+        <div id="Res_Ex4"></div>
+    </div>
+    <div id="parte_5" style="display: none;">
+        <Button onclick="Ex5v1()">Números cabalísticos v1</Button><br>
+        <Button onclick="Ex5v2()">Números cabalísticos v2</Button>
+        <div id="Res_Ex5"></div>
+    </div>
+    <div id="parte_6" style="display: none;">
+        <input type="number" id="ipt_ex6" min=20 max=100>
+        <Button onclick="Ex6v1()">Adoro múltiplos de 5 vv1</Button><br>
+        <Button onclick="Ex6v2()">Adoro múltiplos de 5 v2</Button>
+        <div id="Res_Ex6"></div>
+    </div>
+    <div id="parte_7" style="display: none;">
+        <input type="number" id="ipt_ex7" min=0 max=200>
+        <Button onclick="Ex7v1()">Contar v1</Button><br>
+        <Button onclick="Ex7v2()">Contar v2</Button>
+        <div id="Res_Ex7"></div>
+    </div>
+    <div id="parte_8" style="display: none;">
+        <input type="number" id="ipt_ex8" min=0 placeholder="Insira um número"><br>
+        <input type="text" id="ipt_frase_ex8" placeholder="Insira uma frase"><br>
+        <Button onclick="Ex8v1()">Contar v1</Button><br>
+        <Button onclick="Ex8v2()">Contar v2</Button>
+    </div>
+    <div id="parte_9" style="display: none;">
+        <input type="number" id="ipt_ex9_val1" min=0 placeholder="Informe o primeiro valor"><br>
+        <input type="number" id="ipt_ex9_val2" min=0 placeholder="Informe o segundo valor"><br>
+        <Button onclick="Ex9v1()">S2 Pares v1</Button><br>
+        <Button onclick="Ex9v2()">S2 Pares v2</Button>
+        <div id="Res_Ex9"></div>
+    </div>
+    <div id="parte_10" style="display: none;">
+        <p>Carro de corrida</p>
+        <input type="number" id="ipt_ex10" placeholder="Quantas voltas?"><br>
+        <Button onclick="Ex10v1()">Iniciar Corrida v1</Button><br>
+        <Button onclick="Ex10v2()">Iniciar Corrida v2</Button>
+        <div id="Res_Ex10"></div>
+    </div>
+    <div id="parte_11" style="display: none;">
+        <span>Selecione a tabuada que quer ver!</span>
+        <select id="sel_tab">
+            <option value="1">Tabuada do 1</option>
+            <option value="2">Tabuada do 2</option>
+            <option value="3">Tabuada do 3</option>
+            <option value="4">Tabuada do 4</option>
+            <option value="5">Tabuada do 5</option>
+            <option value="6">Tabuada do 6</option>
+            <option value="7">Tabuada do 7</option>
+            <option value="8">Tabuada do 8</option>
+            <option value="9">Tabuada do 9</option>
+        </select><br>
+        <input type="number" id="ipt_ex11" placeholder="Numero a ser multiplicado">
+        <Button onclick="Ex11v1()">Ver tabuada v1</Button><br>
+        <Button onclick="Ex11v2()">Ver tabuada v2</Button>
+        <div id="Res_Ex11">
+        </div>
+    </div>
+
+
+
+    </div>
+</body>
+<script>
+    function MudarEx() {
+        let ExercicioAtual = (alt_ex.value);
+        document.getElementById("parte_1").style.display = "none";
+        document.getElementById("parte_2").style.display = "none";
+        document.getElementById("parte_3").style.display = "none";
+        document.getElementById("parte_4").style.display = "none";
+        document.getElementById("parte_5").style.display = "none";
+        document.getElementById("parte_6").style.display = "none";
+        document.getElementById("parte_7").style.display = "none";
+        document.getElementById("parte_8").style.display = "none";
+        document.getElementById("parte_9").style.display = "none";
+        document.getElementById("parte_10").style.display = "none";
+        document.getElementById("parte_11").style.display = "none";
+        document.getElementById(ExercicioAtual).style.display = "block";
+    }
+    function Ex1v1() {
+        let Ex1_Contar = 1
+        Res_Ex1.innerHTML = ""
+        while (Ex1_Contar <= 15) {
+            Res_Ex1.innerHTML += Ex1_Contar + "<br>"
+            Ex1_Contar++;
+        }
+    }
+    function Ex1v2() {
+        Res_Ex1.innerHTML = ""
+        for (Ex1_Contar = 1; Ex1_Contar <= 15; Ex1_Contar++) {
+            Res_Ex1.innerHTML += Ex1_Contar + "<br>"
+        }
+    }
+    function Ex2v1() {
+        let Ex2_Frase = "Muito Legal!"
+        let Ex2_Contar = 1
+        Res_Ex2.innerHTML = ""
+        while (Ex2_Contar <= 7) {
+            Res_Ex2.innerHTML += Ex2_Contar + " - " + Ex2_Frase + "<br>"
+            Ex2_Contar++;
+        }
+    }
+    function Ex2v2() {
+        let Ex2_Frase = "Muito Legal!"
+        Res_Ex2.innerHTML = ""
+        for (Ex2_Contar = 1; Ex2_Contar <= 7; Ex2_Contar++) {
+            Res_Ex2.innerHTML += Ex2_Contar + " - " + Ex2_Frase + "<br>"
+        }
+    }
+    function Ex3v1() {
+        let Ex3_Frase = ipt_ex3.value
+        let Ex3_Contar = 1
+        Res_Ex3.innerHTML = ""
+        while (Ex3_Contar <= 7) {
+            Res_Ex3.innerHTML += Ex3_Contar + " - " + Ex3_Frase + "<br>"
+            Ex3_Contar++;
+        }
+    }
+    function Ex3v2() {
+        let Ex3_Frase = ipt_ex3.value
+        Res_Ex3.innerHTML = ""
+        for (let Ex3_Contar = 1; Ex3_Contar <= 7; Ex3_Contar++) {
+            Res_Ex3.innerHTML += Ex3_Contar + " - " + Ex3_Frase + "<br>"
+        }
+    }
+    function Ex4v1() {
+        let Ex4_Contar = 0
+        Res_Ex4.innerHTML = ""
+        while (Ex4_Contar <= 100) {
+            Res_Ex4.innerHTML += `${Ex4_Contar}<br>`
+            Ex4_Contar += 2;
+        }
+    }
+    function Ex4v2() {
+        Res_Ex4.innerHTML = ""
+        for (let Ex4_Contar = 0; Ex4_Contar <= 100; Ex4_Contar += 2) {
+            Res_Ex4.innerHTML += `${Ex4_Contar}<br>`
+        }
+    }
+    function Ex5v1() {
+        let Ex5_Contar = 1
+        Res_Ex5.innerHTML = ""
+        while (Ex5_Contar <= 30) {
+            if (Ex5_Contar == 3 || Ex5_Contar == 4 || Ex5_Contar == 7 || Ex5_Contar == 10 || Ex5_Contar == 12) {
+                Res_Ex5.innerHTML += ""
+            }
+            else {
+                Res_Ex5.innerHTML += `${Ex5_Contar}<br>`
+            }
+            Ex5_Contar++;
+        }
+    }
+    function Ex5v2() {
+        Res_Ex5.innerHTML = ""
+        for (let Ex5_Contar = 1; Ex5_Contar <= 30; Ex5_Contar++) {
+            if (Ex5_Contar == 3 || Ex5_Contar == 4 || Ex5_Contar == 7 || Ex5_Contar == 10 || Ex5_Contar == 12) {
+                Res_Ex5.innerHTML += ""
+            }
+            else {
+                Res_Ex5.innerHTML += `${Ex5_Contar}<br>`
+            }
+        }
+    }
+    function Ex6v1() {
+        let Mult_5 = 0
+        let Ex6_Numero = Number(ipt_ex6.value);
+        Res_Ex6.innerHTML = ""
+        if (Ex6_Numero < 20 || Ex6_Numero > 100) {
+            Res_Ex6.innerHTML = "numero inválido"
+        }
+        else if (Ex6_Numero % 5 != 0) {
+            Res_Ex6.innerHTML = "numero não é divisível por 5!"
+        }
+        else {
+            while (Mult_5 <= Ex6_Numero) {
+                Res_Ex6.innerHTML += Mult_5 + ", Número Informado:" + Ex6_Numero + "<br>"
+                Mult_5 += 5
+            }
+        }
+    }
+    function Ex6v2() {
+        let Ex6_Numero = Number(ipt_ex6.value);
+        Res_Ex6.innerHTML = ""
+        if (Ex6_Numero < 20 || Ex6_Numero > 100) {
+            Res_Ex6.innerHTML = "numero inválido"
+        }
+        else if (Ex6_Numero % 5 != 0) {
+            Res_Ex6.innerHTML = "numero não é divisível por 5!"
+        }
+        else {
+            for (Mult_5 = 0; Mult_5 <= Ex6_Numero; Mult_5 += 5) {
+                Res_Ex6.innerHTML += Mult_5 + ", Número Informado:" + Ex6_Numero + "<br>"
+            }
+        }
+    }
+    function Ex7v1() {
+        let Mult_7 = 0
+        let Ex7_Numero = Number(ipt_ex7.value);
+        Res_Ex7.innerHTML = ""
+        if (Ex7_Numero < 0 || Ex7_Numero > 200) {
+            Res_Ex7.innerHTML = "numero inválido"
+        }
+        else {
+            while (Mult_7 <= Ex7_Numero) {
+                Res_Ex7.innerHTML += Mult_7 + ", Número Informado:" + Ex7_Numero + "<br>"
+                Mult_7 += 7
+            }
+        }
+    }
+    function Ex7v2() {
+        let Ex7_Numero = Number(ipt_ex7.value);
+        Res_Ex7.innerHTML = ""
+        if (Ex7_Numero < 0 || Ex7_Numero > 200) {
+            Res_Ex7.innerHTML = "numero inválido"
+        }
+        else {
+            for (Mult_7 = 0; Mult_7 <= Ex7_Numero; Mult_7 += 7) {
+                Res_Ex7.innerHTML += Mult_7 + ", Número Informado:" + Ex7_Numero + "<br>"
+            }
+        }
+    }
+    function Ex8v1() {
+        let Contador = 1
+        let Frase = ipt_frase_ex8.value
+        let Ex8_Numero = Number(ipt_ex8.value);
+        while (Contador <= Ex8_Numero * Ex8_Numero) {
+            alert(Frase)
+            Contador++
+        }
+    }
+    function Ex8v2() {
+        let Frase = ipt_frase_ex8.value
+        let Ex8_Numero = Number(ipt_ex8.value);
+        for (Contador = 1; Contador <= Ex8_Numero * Ex8_Numero; Contador++) {
+            alert(Frase)
+        }
+    }
+    function Ex9v1() {
+        let Valor1 = Number(ipt_ex9_val1.value)
+        let Valor2 = Number(ipt_ex9_val2.value)
+        if (Valor1 > Valor2) {
+            alert("Os valores devem ser crescentes (valor 1 menor que o valor 2)")
+        }
+        else {
+            Res_Ex9.innerHTML = ""
+            while (Valor1 <= Valor2) {
+                if (Valor1 % 2 == 0) {
+                    Res_Ex9.innerHTML += `${Valor1} <br>`
+                }
+                else {
+
+                }
+                Valor1++
+            }
+        }
+    }
+    function Ex9v2() {
+        let Valor1 = Number(ipt_ex9_val1.value)
+        let Valor2 = Number(ipt_ex9_val2.value)
+        if (Valor1 > Valor2) {
+            alert("Os valores devem ser crescentes (valor 1 menor que o valor 2)")
+        }
+        else {
+            Res_Ex9.innerHTML = ""
+            for (; Valor1 <= Valor2; Valor1++) {
+                if (Valor1 % 2 == 0) {
+                    Res_Ex9.innerHTML += `${Valor1} <br>`
+                }
+            }
+        }
+    }
+    function Ex10v1() {
+        let ValorVoltas = Number(ipt_ex10.value)
+        let ContadorVoltas = 0
+        Res_Ex10.innerHTML = ""
+        while (ContadorVoltas <= ValorVoltas) {
+            if (ContadorVoltas < ValorVoltas) {
+                Res_Ex10.innerHTML += `Carro dando a ${ContadorVoltas + 1}º volta<br>`
+            }
+            else if (ContadorVoltas == ValorVoltas) {
+                Res_Ex10.innerHTML += `Corrida finalizada!`
+
+            }
+            ContadorVoltas++
+        }
+    }
+    function Ex10v2() {
+        let ContadorVoltas = 0
+        Res_Ex10.innerHTML = ""
+        for (ValorVoltas = Number(ipt_ex10.value); ContadorVoltas <= ValorVoltas; ContadorVoltas++) {
+            if (ContadorVoltas < ValorVoltas) {
+                Res_Ex10.innerHTML += `Carro dando a ${ContadorVoltas + 1}º volta<br>`
+            }
+            else if (ContadorVoltas == ValorVoltas) {
+                Res_Ex10.innerHTML += `Corrida finalizada!`
+
+            }
+        }
+    }
+    function Ex11v1() {
+        let ValorDaTabuada = Number(sel_tab.value)
+        let NumeroMultiplicado = Number(ipt_ex11.value)
+        let Contador_tab = 0
+        Res_Ex11.innerHTML = ""
+        while (Contador_tab < NumeroMultiplicado) {
+            let Resultado = ValorDaTabuada * (Contador_tab + 1)
+            if ((Contador_tab + 1) % 2 == 0) {
+                console.log("Entrou no if")
+                Res_Ex11.innerHTML += '<span style="color:blue">' + ValorDaTabuada + 'x' + (Contador_tab + 1) + '=' + Resultado + '<\span ><br>'
+            }
+            else {
+                console.log("Entrou no else")
+                Res_Ex11.innerHTML += '<span style="color:red">' + ValorDaTabuada + 'x' + (Contador_tab + 1) + '=' + Resultado + '<\span><br>'
+            }
+            Contador_tab++
+        }
+    }
+    function Ex11v2() {
+        let ValorDaTabuada = Number(sel_tab.value)
+        let NumeroMultiplicado = Number(ipt_ex11.value)
+        Res_Ex11.innerHTML = ""
+        for (Contador_tab = 0; Contador_tab < NumeroMultiplicado; Contador_tab++) {
+            let Resultado = ValorDaTabuada * (Contador_tab + 1)
+            if ((Contador_tab + 1) % 2 == 0) {
+                console.log("Entrou no if")
+                Res_Ex11.innerHTML += '<span style="color:blue">' + ValorDaTabuada + 'x' + (Contador_tab + 1) + '=' + Resultado + '<\span ><br>'
+            }
+            else {
+                console.log("Entrou no else")
+                Res_Ex11.innerHTML += '<span style="color:red">' + ValorDaTabuada + 'x' + (Contador_tab + 1) + '=' + Resultado + '<\span><br>'
+            }
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExFor</title>
+</head>
+
+<body>
+    <div name="Alterar Exercicio">
+        <select name="alterar exercicio" id="alt_ex_for" onchange="MudarExFor()">
+            <option value="parte_1">parte_1</option>
+            <option value="parte_2">parte_2</option>
+            <option value="parte_5">parte_5</option>
+            <option value="parte_6">parte_6</option>
+            <option value="parte_7">parte_7</option>
+            <option value="parte_8">parte_8</option>
+            <option value="parte_9">parte_9</option>
+        </select>
+    </div>
+    <div id="parte_1" style="display: block;;">
+        <input type="number" id="ipt_ex1" placeholder="Pessoas a entrar no carro"><br>
+        <Button onclick="Ex1v1()">#Partiu Carona v1</Button><br>
+        <Button onclick="Ex1v2()">#Partiu Carona v2</Button>
+        <div id="Res_Ex1"></div>
+    </div>
+    <div id="parte_2" style="display: none;">
+        <p>Informe o número de pessoas que irão entrar no carro</p>
+        <input type="number" id="ipt_ex2_pessoas" placeholder="Pessoas a entrar no carro"><br>
+        <p>Informe a capacidade máxima do veículo</p>
+        <input type="number" id="ipt_ex2_carro_capacidade" placeholder="Capacidade máxima"><br>
+        <Button onclick="Ex2v1()">#Partiu Carona v1</Button><br>
+        <Button onclick="Ex2v2()">#Partiu Carona v2</Button>
+        <div id="Res_Ex2"></div>
+    </div>
+    <div id="parte_5" style="display: none;">
+        <p>Quantas latinhas de coca-cola você acha que já bebeu na vida?</p>
+        <input type="number" id="ipt_ex5_qtd_coca" placeholder="Quantidade de latas"><br>
+        <Button onclick="Ex5v1()">Ver a quantidade</Button><br>
+        <Button onclick="Ex5v2()">Ver a quantidade v2</Button><br>
+        <div id="Res_Ex5"></div>
+    </div>
+    <div id="parte_6" style="display: none;">
+        <p>Informe quantas xícaras de café com leite você já tomou na vida</p>
+        <input type="number" id="ipt_ex6" placeholder="Xícaras"><br>
+        <Button onclick="Ex6v1()">Ver a quantidade</Button><br>
+        <Button onclick="Ex6v2()">Ver a quantidade v2</Button>
+        <div id="Res_Ex6"></div>
+    </div>
+    <div id="parte_7" style="display: none;">
+        <p>Informe quantos depósitos você já fez no banco</p>
+        <input type="number" id="ipt_ex7_quantidade" placeholder="Depósitos">
+        <p>Informe o valor de cada depósito</p>
+        <input type="number" id="ipt_ex7_valor" placeholder="Valor"><br>
+
+        <Button onclick="Ex7v1()">Acompanhar grana</Button><br>
+        <Button onclick="Ex7v2()">Acompanhar grana v2</Button>
+        <div id="Res_Ex7"></div>
+    </div>
+    <div id="parte_8" style="display: none;">
+        <p>Informe quantos depósitos você já fez no banco</p>
+        <input type="number" id="ipt_ex8_quantidade" placeholder="Depósitos">
+        <p>Informe o valor de cada depósito</p>
+        <input type="number" id="ipt_ex8_valor" placeholder="Valor"><br>
+
+        <Button onclick="Ex8v1()">Acompanhar grana</Button><br>
+        <Button onclick="Ex8v2()">Acompanhar grana v2</Button>
+        <div id="Res_Ex8"></div>
+    </div>
+    <div id="parte_9" style="display: none;">
+        <p>Informe quantos depósitos você já fez no banco</p>
+        <input type="number" id="ipt_ex9_quantidade" placeholder="Depósitos">
+        <p>Informe o valor de cada depósito</p>
+        <input type="number" id="ipt_ex9_valor" placeholder="Valor"><br>
+
+        <Button onclick="Ex9v1()">Acompanhar grana</Button><br>
+        <Button onclick="Ex9v2()">Acompanhar grana v2</Button>
+        <div id="Res_Ex9"></div>
+    </div>
+
+
+</body>
+
+<script>
+    function MudarExFor() {
+        let ExercicioAtual = (alt_ex_for.value);
+        document.getElementById("parte_1").style.display = "none";
+        document.getElementById("parte_2").style.display = "none";
+        document.getElementById("parte_5").style.display = "none";
+        document.getElementById("parte_6").style.display = "none";
+        document.getElementById("parte_7").style.display = "none";
+        document.getElementById("parte_8").style.display = "none";
+        document.getElementById("parte_9").style.display = "none";
+        document.getElementById(ExercicioAtual).style.display = "block";
+    }
+    function Ex1v1() {
+        let passageiros = Number(ipt_ex1.value)
+        Res_Ex1.innerHTML = ""
+        for (i = 0; i < passageiros; i++) {
+            if (i + 1 <= 5) {
+                Res_Ex1.innerHTML += `Entrou o ${i + 1}º passageiro<br>`
+            }
+            else if (i + 1 > 5) {
+                Res_Ex1.innerHTML += `O ${i + 1}º vai ter que esperar<br>`
+            }
+        }
+    }
+    function Ex1v2() {
+        let i = 0
+        let passageiros = Number(ipt_ex1.value)
+        Res_Ex1.innerHTML = ""
+        while (i < passageiros) {
+            if (i + 1 <= 5) {
+                Res_Ex1.innerHTML += `Entrou o ${i + 1}º passageiro<br>`
+            }
+            else if (i + 1 > 5) {
+                Res_Ex1.innerHTML += `O ${i + 1}º vai ter que esperar<br>`
+            };
+            i++
+        }
+    }
+    function Ex2v1() {
+        let passageiros = Number(ipt_ex2_pessoas.value)
+        let capacidade = Number(ipt_ex2_carro_capacidade.value)
+        Res_Ex2.innerHTML = ""
+        if (passageiros <= capacidade) {
+            Res_Ex2.innerHTML += "O programa só irá rodar quando a quantidade de passageiros exceder a capacidade máxima do veículo"
+        }
+        else {
+
+            for (i = 0; i < passageiros; i++) {
+                if (i + 1 <= capacidade) {
+                    Res_Ex2.innerHTML += `Entrou o ${i + 1}º passageiro<br>`
+                }
+                if (i + 1 > capacidade) {
+                    Res_Ex2.innerHTML += `O ${i + 1}º vai ter que esperar<br>`
+                }
+            }
+        }
+    }
+    function Ex2v2() {
+        let passageiros = Number(ipt_ex2_pessoas.value)
+        let capacidade = Number(ipt_ex2_carro_capacidade.value)
+        Res_Ex2.innerHTML = ""
+        let i = 0;
+        if (passageiros <= capacidade) {
+            Res_Ex2.innerHTML += "O programa só irá rodar quando a quantidade de passageiros exceder a capacidade máxima do veículo"
+        }
+        else {
+
+            while (i < passageiros) {
+                if (i + 1 <= capacidade) {
+                    Res_Ex2.innerHTML += `Entrou o ${i + 1}º passageiro<br>`
+                }
+                if (i + 1 > capacidade) {
+                    Res_Ex2.innerHTML += `O ${i + 1}º vai ter que esperar<br>`
+                }
+                i++
+            }
+        }
+    }
+    function Ex5v1() {
+        let quantidade = Number(ipt_ex5_qtd_coca.value)
+        Res_Ex5.innerHTML = ""
+        for (i = 0; i < quantidade; i++) {
+            Res_Ex5.innerHTML += `<img src="https://andinacocacola.vtexassets.com/arquivos/ids/157652/110255_COCA---CCO220ml.jpg?v=638404083624500000"
+            alt="lata de cocacola" width="100px">`
+        }
+    }
+    function Ex5v2() {
+        let quantidade = Number(ipt_ex5_qtd_coca.value)
+        Res_Ex5.innerHTML = ""
+        let i = 0
+        while (i < quantidade) {
+            Res_Ex5.innerHTML += `<img src="https://andinacocacola.vtexassets.com/arquivos/ids/157652/110255_COCA---CCO220ml.jpg?v=638404083624500000"
+            alt="lata de cocacola" width="100px">`
+            i++
+        }
+    }
+    function Ex6v1() {
+        let quantidade = Number(ipt_ex6.value);
+        Res_Ex6.innerHTML = ""
+        for (i = 0; i < quantidade; i++) {
+            Res_Ex6.innerHTML += `<img src="https://cdn.awsli.com.br/1000x1000/2777/2777231/produto/309429758/leite-de-coco-po-tiny-p7qgqoovyu.jpg"
+            width="100" alt="leite em pó">`
+        }
+        Res_Ex6.innerHTML += "<br>"
+        for (i = 0; i < quantidade * 2; i++) {
+            Res_Ex6.innerHTML += `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2HYjDixWBiPjurTUmjDc8MyktizRDni1ixg&s"
+            width="100" alt="xícara de café">`
+        }
+    }
+    function Ex6v2() {
+        let quantidade = Number(ipt_ex6.value);
+        Res_Ex6.innerHTML = ""
+        let i = 0
+        while (i < quantidade) {
+            Res_Ex6.innerHTML += `<img src="https://cdn.awsli.com.br/1000x1000/2777/2777231/produto/309429758/leite-de-coco-po-tiny-p7qgqoovyu.jpg"
+            width="100" alt="leite em pó">`
+            i++
+        }
+        i = 0
+        Res_Ex6.innerHTML += "<br>"
+        while (i < quantidade * 2) {
+            Res_Ex6.innerHTML += `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2HYjDixWBiPjurTUmjDc8MyktizRDni1ixg&s"
+            width="100" alt="xícara de café">`
+            i++
+        }
+    }
+    function Ex7v1() {
+        let depositos = Number(ipt_ex7_quantidade.value)
+        let valor = Number(ipt_ex7_valor.value)
+        let Total = 0
+        Res_Ex7.innerHTML = ""
+        for (i = 0; i < depositos; i++) {
+            Total = valor * (i + 1)
+            Res_Ex7.innerHTML += `<br>${i + 1}º Mês: R$${Total.toFixed(2)}<br>`
+        }
+        Res_Ex7.innerHTML += `<br>Total guardado: R$${Total.toFixed(2)}`
+    }
+    function Ex7v2() {
+        let depositos = Number(ipt_ex7_quantidade.value)
+        let valor = Number(ipt_ex7_valor.value)
+        let Total = 0
+        let i = 0
+        Res_Ex7.innerHTML = ""
+        while (i < depositos) {
+            Total = valor * (i + 1)
+            Res_Ex7.innerHTML += `<br>${i + 1}º Mês: R$${Total.toFixed(2)}<br>`
+            i++
+        }
+        Res_Ex7.innerHTML += `<br>Total guardado: R$${Total.toFixed(2)}`
+    }
+    function Ex8v1() {
+        let depositos = Number(ipt_ex8_quantidade.value)
+        const valor = Number(ipt_ex8_valor.value)
+        let Total = 0
+        Res_Ex8.innerHTML = ""
+
+        for (let i = 0; i < depositos; i++) {
+
+            Total += valor
+
+            if ((i + 1) % 3 == 0) {
+                Total += Total * 0.01
+            }
+
+            Res_Ex8.innerHTML += `<br>${i + 1}º Mês: R$${Total.toFixed(2)}<br>`
+        }
+
+        Res_Ex8.innerHTML += `<br>Total guardado: R$${Total.toFixed(2)}`
+    }
+
+    function Ex8v2() {
+        let depositos = Number(ipt_ex8_quantidade.value)
+        const valor = Number(ipt_ex8_valor.value)
+        let Total = 0
+        let i = 0
+        Res_Ex8.innerHTML = ""
+
+        while (i < depositos) {
+
+            Total += valor
+
+            if ((i + 1) % 3 == 0) {
+                Total += Total * 0.01
+            }
+
+            Res_Ex8.innerHTML += `<br>${i + 1}º Mês: R$${Total.toFixed(2)}<br>`
+            i++
+        }
+
+        Res_Ex8.innerHTML += `<br>Total guardado: R$${Total.toFixed(2)}`
+    }
+    function Ex9v1() {
+        let depositos = Number(ipt_ex9_quantidade.value)
+        const valor = Number(ipt_ex9_valor.value)
+        let Total = 0
+        Res_Ex9.innerHTML = ""
+
+        for (let i = 0; i < depositos; i++) {
+            Total += valor
+            let estrela = ""
+
+            if ((i + 1) % 3 == 0) {
+                Total += Total * 0.01
+                estrela = `<img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" style="width:15px; vertical-align:middle;">`
+            }
+
+            Res_Ex9.innerHTML += `<br>${i + 1}º Mês: R$${Total.toFixed(2)} ${estrela}<br>`
+        }
+
+        Res_Ex9.innerHTML += `<br>Total guardado: R$${Total.toFixed(2)}`
+    }
+    function Ex9v2() {
+        let depositos = Number(ipt_ex9_quantidade.value)
+        const valor = Number(ipt_ex9_valor.value)
+        let Total = 0
+        Res_Ex9.innerHTML = ""
+        let i = 0
+        while (i < depositos) {
+            Total += valor
+            let estrela = ""
+
+            if ((i + 1) % 3 == 0) {
+                Total += Total * 0.01
+                estrela = `<img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" style="width:15px; vertical-align:middle;">`
+            }
+
+            Res_Ex9.innerHTML += `<br>${i + 1}º Mês: R$${Total.toFixed(2)} ${estrela}<br>`
+            i++
+        }
+
+        Res_Ex9.innerHTML += `<br>Total guardado: R$${Total.toFixed(2)}`
+    }
+
+</script>
+
+</html>
