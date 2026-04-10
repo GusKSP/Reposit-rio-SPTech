@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte 1</title>
+</head>
+
+<body>
+    <div name="selecionar questão">
+        <Select onchange="Questao()" id="selecionarquestao">
+            <option value="Parte1">Parte 1</option>
+            <option value="Parte2">Parte 2</option>
+            <option value="Parte3">Parte 3</option>
+            <option value="Parte4">Parte 4</option>
+            <option value="Parte5">Parte 5</option>
+        </Select>
+    </div>
+
+    <div id="Parte1" style="display: inline;">
+        <h2>Parte 1</h2>
+
+        <h3>1a) Encontrar elementos duplicados</h3>
+        <input type="text" id="ipt_Elemento"><br>
+        <button onclick="adicionarElemento()">Adicionar Elemento</button><br>
+        <button onclick="exibirDuplicados()">Exibir Duplicados</button><br>
+        <button onclick="removerDuplicatas()">Remover Duplicatas</button><br>
+        <p id="Resultado"></p><br><br>
+
+        <h3>1b) Desafio</h3>
+        <input type="text" id="ipt_ElementoDesafio"><br>
+        <button onclick="adicionarElementoDesafio()">Adicionar Elemento</button><br>
+        <button onclick="exibirDuplicadosDesafio()">Exibir Duplicados</button><br>
+        <button onclick="removerDuplicatasDesafio()">Remover Duplicatas</button><br>
+        <p id="ResultadoDesafio"></p><br><br>
+    </div>
+
+    <div id="Parte2" style="display: none;">
+        <h2>Parte 2</h2>
+        <h3>2a) inverter texto </h3>
+        <p>Coloque seu texto aqui:</p>
+        <input type="text" id="TextoPt2" placeholder="Digite seu texto aqui"><br>
+        <button onclick="inverterTextoPt2()">Inverter Texto</button><br>
+        <p id="Resultado2a"></p>
+        <h3>2b) Desafio</h3>
+        <p>Coloque seu texto aqui:</p>
+        <input type="text" id="TextoDesafioPt2" placeholder="Digite seu texto aqui"><br>
+        <button onclick="inverterTextoDesafioPt2()">Inverter Texto</button><br>
+        <p id="Resultado2b"></p>
+    </div>
+
+    <div id="Parte3" style="display: none;">
+        <h2>Parte 3</h2>
+        <h3>3a) Palíndromo</h3>]
+        <p>Digite uma palavra ou frase:</p>
+        <input type="text" id="Palindromo" placeholder="Digite aqui:"><br>
+        <button onclick="validarPalindromo()">Validar Palíndromo</button><br>
+        <p id="Resultado3"></p><br><br>
+        <h3>3b) Desafio</h3>
+        <p>Digite uma palavra ou frase:</p>
+        <input type="text" id="PalindromoDesafio" placeholder="Digite aqui:"><br>
+        <button onclick="validarPalindromoDesafio()">Validar Palíndromo</button><br>
+        <p id="Resultado3Desafio"></p><br><br>
+    </div>
+
+    <div id="Parte4" style="display: none;">
+        <h2>Poupança</h2>
+        Entre com o valor mensal de depósito: <input id="ipt_deposito" type="number"> <br>
+        Entre com a quantidade de meses: <input id="ipt_meses" type="number"> <br>
+        Entre com o percentual de juros: <input id="ipt_juros" type="number"> <br> <br>
+        Qual é o seu sonho: <input id="ipt_sonho"> <br>
+        Qual o valor do seu sonho: <input id="ipt_valorSonho" type="number">
+        <button onclick="projetar()">Projetar</button><br> <br>
+        <div id="div_msg"></div>
+    </div>
+
+    <div id="Parte5" style="display: none;">
+        <!--
+        5a) Desafio do Desafio
+Melhore o exercício 2 com os seguintes desafios extras:
+
+a) Resolver sem criar um novo vetor, caso tenha criado.
+
+5b) Desafio do Desafio do Desafio (🥷)
+a) Inverter apenas letras e manter símbolos na posição.
+
+Exemplo: "a,b$c" vira "c,b$a"
+
+Apenas as letras foram invertidas. -->
+        <h2>Parte 5</h2>
+        <h3>5a) inverter texto</h3>
+        <p>Coloque seu texto aqui:</p>
+        <input type="text" id="Textopt5" placeholder="Digite seu texto aqui"><br>
+        <button onclick="inverterTextopt5()">Inverter Texto</button><br>
+        <p id="Resultado5a"></p><br><br>
+        <h3>5b) Desafio</h3>
+        <p>Coloque seu texto aqui:</p>
+        <input type="text" id="TextoDesafiopt5" placeholder="Digite seu texto aqui"><br>
+        <button onclick="inverterTextoDesafiopt5()">Inverter Texto</button><br>
+        <p id="Resultado5b"></p>
+    </div>
+</body>
+<script>
+    function Questao() {
+        let select = document.querySelector('select');
+        let valor = selecionarquestao.value;
+        let divs = document.querySelectorAll('div[id^="Parte"]');
+        divs.forEach(div => {
+            if (div.id === valor) {
+                div.style.display = 'inline';
+            } else {
+                div.style.display = 'none';
+            }
+        });
+
+    }
+</script>
+
+<script>
+
+    let vetor = [];
+    let duplicados = [];
+    function adicionarElemento() {
+        let elemento = ipt_Elemento.value;
+        vetor.push(elemento);
+        console.log(vetor);
+    }
+
+    function exibirDuplicados() {
+        duplicados = [];
+        for (let i = 0; i < vetor.length; i++) {
+            for (let j = i + 1; j < vetor.length; j++) {
+                if (vetor[i] === vetor[j]) {
+                    if (!duplicados.includes(vetor[i])) {
+                        duplicados.push(vetor[i]);
+                    }
+                }
+            }
+        }
+        Resultado.innerHTML = "Duplicados: <br>"
+        Resultado.innerHTML += duplicados.join("<br>") + "<br>"
+
+        Resultado.innerHTML += "<br>" + "Vetor: <br>"
+        Resultado.innerHTML += vetor.join("<br>")
+    }
+    function removerDuplicatas() {
+        for (let i = 0; i < vetor.length; i++) {
+            while (vetor.indexOf(vetor[i]) !== vetor.lastIndexOf(vetor[i])) {
+                vetor.splice(vetor.lastIndexOf(vetor[i]), 1);
+            }
+        }
+
+        console.log(vetor);
+        Resultado.innerHTML = "Vetor: <br>"
+        Resultado.innerHTML += vetor.join("<br>")
+    }
+
+
+    let vetorDesafio = [];
+
+    function adicionarElementoDesafio() {
+        let elementob = ipt_ElementoDesafio.value;
+        vetorDesafio.push(elementob);
+        console.log(vetorDesafio);
+    }
+
+    function exibirDuplicadosDesafio() {
+        let duplicadosDesafio = []
+        for (let i = 0; i < vetorDesafio.length; i++) {
+            for (let j = i + 1; j < vetorDesafio.length; j++) {
+                if (vetorDesafio[i] == vetorDesafio[j]) {
+                    let jaAdicionado = false;
+                    for (let k = 0; k < duplicadosDesafio.length; k++) {
+                        if (duplicadosDesafio[k] == vetorDesafio[i]) {
+                            jaAdicionado = true;
+                        }
+                    }
+                    if (!jaAdicionado) {
+                        duplicadosDesafio.push(vetorDesafio[i]);
+                    }
+                    ResultadoDesafio.innerHTML = "Duplicados: <br>"
+                }
+            }
+        };
+        ResultadoDesafio.innerHTML += duplicadosDesafio.join("<br>") + "<br>"
+    }
+
+    function removerDuplicatasDesafio() {
+        for (let i = 0; i < vetorDesafio.length; i++) {
+            while (vetorDesafio.indexOf(vetorDesafio[i]) !== vetorDesafio.lastIndexOf(vetorDesafio[i])) {
+                vetorDesafio.splice(vetorDesafio.lastIndexOf(vetorDesafio[i]), 1);
+            }
+        }
+        console.log(vetorDesafio);
+        ResultadoDesafio.innerHTML = "Vetor: <br>"
+        ResultadoDesafio.innerHTML += vetorDesafio.join("<br>")
+    }
+
+</script>
+
+<script>
+    function inverterTextoPt2() {
+        let textopt2 = TextoPt2.value;
+        let textoInvertidoPt2 = textopt2.split('').reverse().join('');
+        Resultado2a.innerHTML = "Texto Invertido: <br>" + textoInvertidoPt2;
+    }
+    function inverterTextoDesafioPt2() {
+        let textoDesafiopt2 = TextoDesafioPt2.value;
+        let textoInvertidoDesafiopt2 = "";
+        for (let i = textoDesafiopt2.length - 1; i >= 0; i--) {
+            textoInvertidoDesafiopt2 += textoDesafiopt2[i];
+        }
+        Resultado2b.innerHTML = "Texto Invertido: <br>" + textoInvertidoDesafiopt2;
+    }
+</script>
+
+<script>
+    function validarPalindromo() {
+        let frase = Palindromo.value;
+        let palindromoInvertidosemLowercase = frase.split('').reverse().join('');
+        let palindromoLimpo = frase.toLowerCase();
+        let palindromoInvertido = palindromoLimpo.split('').reverse().join('');
+        if (palindromoLimpo === palindromoInvertido) {
+            Resultado3.innerHTML = `"${frase}" é um palíndromo.<br>`;
+        } else {
+            Resultado3.innerHTML = `"${frase}" não é um palíndromo.<br>`;
+        }
+        Resultado3.innerHTML += `Palavra invertida: ${palindromoInvertidosemLowercase}`;
+    }
+
+    function validarPalindromoDesafio() {
+        let fraseDesafio = PalindromoDesafio.value;
+        let palindromoLimpoDesafio = "";
+        for (let i = 0; i < fraseDesafio.length; i++) {
+            let caractere = fraseDesafio[i].toLowerCase();
+            if (caractere >= 'a' && caractere <= 'z') {
+                palindromoLimpoDesafio += caractere;
+            }
+        }
+        let palindromoInvertidoDesafio = "";
+        for (let i = palindromoLimpoDesafio.length - 1; i >= 0; i--) {
+            palindromoInvertidoDesafio += palindromoLimpoDesafio[i];
+        }
+        if (palindromoLimpoDesafio === palindromoInvertidoDesafio) {
+            Resultado3Desafio.innerHTML = `"${fraseDesafio}" é um palíndromo.<br>`;
+        } else {
+            Resultado3Desafio.innerHTML = `"${fraseDesafio}" não é um palíndromo.<br>`;
+        }
+        let palindromoInvertidosemLowercaseDesafio = "";
+        for (let i = fraseDesafio.length - 1; i >= 0; i--) {
+            palindromoInvertidosemLowercaseDesafio += fraseDesafio[i];
+        }
+        Resultado3Desafio.innerHTML += `Palavra invertida: ${palindromoInvertidosemLowercaseDesafio}`;
+    }
+</script>
+
+<script>
+    function projetar() {
+        let deposito = Number(ipt_deposito.value);
+        let meses = Number(ipt_meses.value);
+        let juros = Number(ipt_juros.value);
+        let sonho = ipt_sonho.value;
+        let valorSonho = Number(ipt_valorSonho.value);
+
+        if (deposito <= 0) {
+            div_msg.innerHTML = "O depósito deve ser um número maior que zero.";
+            return;
+        }
+        else if (meses <= 0 || meses % 1 !== 0) {
+            div_msg.innerHTML = "A quantidade de meses deve ser um número inteiro maior que zero.";
+            return;
+        }
+        else if (juros <= 0 || juros >= 10) {
+            div_msg.innerHTML = "O percentual de juros deve ser um número positivo maior que zero e menor que 10.";
+            return;
+        }
+        else if (sonho.length < 3) {
+            div_msg.innerHTML = "O nome do sonho deve possuir ao menos 3 caracteres.";
+            return;
+        }
+        if (valorSonho <= deposito) {
+            div_msg.innerHTML = "O valor do sonho deve ser um número positivo maior que o depósito mensal.";
+            return;
+        }
+        else {
+            let valorInicial = 0;
+            let jurosCalculados = 0;
+            let valorFinal = 0;
+            div_msg.innerHTML = "";
+            for (let mes = 1; mes <= meses; mes++) {
+                jurosCalculados = valorInicial * (juros / 100);
+                valorFinal = valorInicial + jurosCalculados + deposito;
+
+                div_msg.innerHTML += `Mês ${mes} - Valor Inicial: R$ ${valorInicial.toFixed(2)} - Juros: R$ ${jurosCalculados.toFixed(2)} - Depósito: R$ ${deposito.toFixed(2)} - Valor Final: R$ ${valorFinal.toFixed(2)}<br>`;
+
+                valorInicial = valorFinal;
+            }
+            if (valorFinal >= valorSonho) {
+                let sobra = valorFinal - valorSonho;
+                div_msg.innerHTML += `<h4 style="color: green;">Parabéns você é um POUPADOR, além do seu sonho de ${sonho} ainda sobrou R$ ${sobra.toFixed(2)} para outras aquisições.</h4>`;
+
+            } else {
+                let falta = valorSonho - valorFinal;
+                div_msg.innerHTML += `<h4 style="color: red;">Você precisa poupar um pouco mais. Para o sonho de ${sonho} ainda falta R$ ${falta.toFixed(2)}.</h4>`;
+            }
+        }
+    }
+</script>
+
+<script>
+    function inverterTextopt5() {
+
+        let textopt5 = Textopt5.value;
+        let textoInvertidopt5 = "";
+        for (let i = textopt5.length - 1; i >= 0; i--) {
+            textoInvertidopt5 += textopt5[i];
+        }
+        Resultado5a.innerHTML = "Texto Invertido: <br>" + textoInvertidopt5;
+    }
+    function inverterTextoDesafiopt5() {
+        const mapadecaracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+        let TextoDesafioPt5 = TextoDesafiopt5.value;
+        let Letras = [];
+        
+        for (let i = TextoDesafioPt5.length - 1; i >= 0; i--) {
+            for (let j = 0; j < mapadecaracteres.length; j++) {
+                if (TextoDesafioPt5[i] == mapadecaracteres[j]) {
+                    Letras.push(TextoDesafioPt5[i]);
+                }
+            }
+        }
+        
+        let TextoInvertidoDesafioPt5 = "";
+        let contador = 0;
+
+        for (let i = 0; i < TextoDesafioPt5.length; i++) {
+            let ValidarLetra = false;
+
+            for (let j = 0; j < mapadecaracteres.length; j++) {
+                if (TextoDesafioPt5[i] == mapadecaracteres[j]) {
+                    ValidarLetra = true;
+                }
+            }
+            if (ValidarLetra) {
+                TextoInvertidoDesafioPt5 += Letras[contador];
+                contador++;
+            }
+            else {
+                TextoInvertidoDesafioPt5 += TextoDesafioPt5[i];
+            }
+
+        }
+
+        Resultado5b.innerHTML = "Texto Invertido: <br>" + TextoInvertidoDesafioPt5;
+
+    }
+</script>
+
+</html>
