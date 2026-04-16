@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Tela infinita</title>
+</head>
+
+<body>
+    <style>
+        .divalteravel,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            background-color: #f0f0f0;
+            cursor: grab;
+        }
+    </style>
+    <div>Div que não altera</div>
+    <div class="divalteravel">
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+
+</html>
+<script>
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Ajustar canvas para tamanho da tela
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Estado da Câmera
+    let camera = { x: 0, y: 0, zoom: 1 };
+    let isDragging = false;
+    let startDrag = { x: 0, y: 0 };
+
+
+    canvas.addEventListener('mousedown', e => {
+        isDragging = true;
+        startDrag = { x: e.clientX - camera.x, y: e.clientY - camera.y };
+        canvas.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        canvas.style.cursor = 'grab';
+    });
+
+
+
+    window.addEventListener('mousemove', e => {
+        if (isDragging) {
+            camera.x = e.clientX - startDrag.x;
+            camera.y = e.clientY - startDrag.y;
+            requestAnimationFrame(draw); // Redesenha ao mover
+        }
+    });
+
+    canvas.addEventListener('wheel', e => {
+        e.preventDefault();
+
+        const zoomIntensity = 0.1;
+        const resize = e.deltaY < 0 ? 1 : -1;
+        const zoomAmount = 1 + resize * zoomIntensity;
+
+        // Limitar zoom
+        camera.zoom = Math.min(Math.max(0.5, camera.zoom * zoomAmount), 5);
+
+        requestAnimationFrame(draw);
+    });
+
+    function draw() {
+        // Limpar fundo
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Aplicar Transformações da Câmera
+        ctx.translate(camera.x, camera.y);
+        ctx.scale(camera.zoom, camera.zoom);
+
+        // --- Desenhar Elementos (Frames do Figma) ---
+        // Exemplo: Retângulo que representa uma tela
+        ctx.fillStyle = "white";
+        ctx.fillRect(100, 100, 300, 500); // x, y, largura, altura
+
+        // Exemplo: Círculo
+        ctx.beginPath();
+        ctx.arc(500, 300, 50, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue";
+        ctx.fill();
+    }
+
+    // Desenho inicial
+    draw();
+</script>
