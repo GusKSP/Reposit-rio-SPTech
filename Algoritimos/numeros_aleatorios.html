@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>numeros_aleatorios</title>
+</head>
+
+<body>
+    <!--Um número aleatório, nunca é aleatório de verdade.
+    Ela utiliza de uma lógica matemática que retorna um número.
+    Por ser uma conta, nunca será TOTALMENTE aleatório.
+    "pseudo-aleatório."
+    
+    Livro recomendado: "O andar do"-->
+
+    <div>
+        <span>Chute um número entre 0 a 20</span>
+        <form action="">
+            <input type="number" id="ipt_sorteio"><br>
+            <button onclick="Sortear()">Sortear</button><br>
+        </form>
+
+        <p id="Resultado"></p>
+    </div>
+
+    <script>
+        // Gerar um número entre 0 e 0.99999...
+        let aleatorio = Math.random();
+        console.log(`Número aleatório: ${aleatorio}`);
+
+        let min = 3;
+        let max = 7;
+        let aleatorio_intervalo = Math.random() * (max - min) + min;
+        console.log(`Número aleatório com intervalo: ${aleatorio_intervalo}`);
+
+        let aleatorio_teste = Math.round(aleatorio_intervalo);
+        console.log(`Número aleatório com intervalo e Round: ${aleatorio_teste}`);
+        let aleatorio_teste2 = parseInt(aleatorio_intervalo);
+        console.log(`Número aleatório com intervalo e parseInt: ${aleatorio_teste2}`);
+
+        function Sortear() {
+            let numero_sorteado = Number(ipt_sorteio.value)
+
+            if (numero_sorteado == aleatorio_teste) {
+                Resultado.innerHTML = "Acertou!";
+            }
+            else {
+                Resultado.innerHTML = "Errou!";
+            }
+
+            // Verificar número em quantas tentativas são necessárias para chegar nesse valor:
+            let numero_sorteado_ate = Number(ipt_sorteio.value)
+            let aleatorio_ate = Math.random() * 20
+            let aleatorio_ate_int = Math.round(aleatorio_ate)
+            let i = 0
+            if (numero_sorteado_ate >= 0 && numero_sorteado_ate <= 20) {
+
+                while (numero_sorteado_ate != aleatorio_ate_int) {
+                    i++
+                    alert(i + " - " + aleatorio_ate_int)
+                    aleatorio_ate = Math.random() * 20
+                    aleatorio_ate_int = Math.round(aleatorio_ate)
+                }
+                i++
+                alert(i + " - " + aleatorio_ate_int + " FINALMENTE!!!!!")
+            }
+        }
+
+    </script>
+
+</html>
