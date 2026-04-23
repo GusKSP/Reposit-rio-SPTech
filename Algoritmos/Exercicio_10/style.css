@@ -20,7 +20,7 @@ body {
     flex-direction: row;
 }
 
-.Ex8{
+.Horizontal{
     display:flex;
     flex-direction: column;
     width: fit-content;

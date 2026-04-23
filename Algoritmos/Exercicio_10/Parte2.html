@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte 2</title>
+    <link rel="stylesheet" href="../Exercicio_10/style.css">
+</head>
+
+<body>
+    <div>
+        <h1>Jogo de Dados</h1>
+        <div class="Vertical">
+            <div class="Horizontal">
+                <button onclick="Dado1()">Dado Jogador 1</button>
+                <p id="Resultado1"></p>
+            </div>
+            <div class="Horizontal">
+                <button onclick="Dado2()">Dado Jogador 2</button>
+                <p id="Resultado2"></p>
+            </div>
+        </div>
+        <button onclick="Comparar()">Comparar Resultados</button>
+        <p id="ResultadoComparacao"></p>
+    </div>
+    <br><br>
+    <div>
+        <h1>Avaliação de Atendimento</h1>
+        <button onclick="Avaliar()">Avaliar</button>
+        <p id="ResultadoAvaliacao"></p>
+    </div>
+    <br><br>
+    <div>
+        <h1>Avaliação de Atendimento</h1>
+        <button onclick="Avaliar2()">Avaliar</button>
+        <p id="ResultadoAvaliacao2"></p>
+        <button onclick="VerificarMedia()">Verificar Média</button>
+        <p id="ResultadoMedia"></p>
+    </div>
+    <br><br>
+    <div>
+        <h1>Temperatura</h1>
+        <button onclick="SortearTemperatura()">Sortear Temperatura</button>
+        <p id="ResultadoTemperatura"></p>
+    </div>
+    <br><br>
+    <div>
+        Crie um programa que simule as fases da lua:
+        a) Ao clicar no botão "Ver a Lua", sorteie um dia do mês entre 1 e 31 e exiba o número sorteado na página
+
+        b) Mostre uma fase da lua, de acordo com o dia sorteado, conforme estes critérios (pode baixar e deixar as
+        imagens locais, se preferir):
+
+        "Lua nova", caso o dia do mês esteja entre 1 e 7
+
+        "Lua cheia", caso o dia do mês esteja entre 8 e 16
+
+        "Lua minguante", caso o dia do mês esteja entre 17 e 22
+
+        "Lua crescente", caso o dia do mês esteja entre 23 e 31
+        <h1>Fases da Lua</h1>
+        <button onclick="FasesdaLua()">Ver a Lua</button>
+        <p id="ResultadoLua"></p>
+    </div>
+    <br><br>
+    <div>
+        <h1>Par Ou Impar</h1>
+        <p id="ParOuImparContador">Números pares: 0 <br> Números ímpares: 0</p>
+        <button onclick="ParOuImpar()">Sortear número</button>
+        <p id="ResultadoParOuImpar"></p>
+
+    </div>
+    <br><br>
+    <div>
+        <h1>Número Inteiro da Sorte</h1>
+        <input type="text" id="NomeSorteio" placeholder="Digite seu nome">
+        <input type="number" id="NumeroSorteio" placeholder="Digite seu número da sorte">
+        <button onclick="Sorteio()">Sortear</button>
+        <p id="ResultadoSorteio"></p>
+    </div>
+    <br><br>
+    <div>
+        <h1>Número Inteiro da Sorte Remake</h1>
+        <input type="text" id="NomeSorteio2" placeholder="Digite seu nome">
+        <input type="number" id="NumeroSorteio2" placeholder="Digite seu número da sorte">
+        <button onclick="Sorteio2()">Sortear</button>
+        <p id="ResultadoSorteio2"></p>
+    </div>
+
+    <div>
+
+        18. Crie um programa que simule um jogo de dados, o qual:
+        a) Tenha o seguinte texto:
+
+        Jogador 1: 0
+
+        Jogador 2: 0
+
+        Empate: 0
+
+        b) Ao clicar no botão “Jogar”, sorteie um valor de 1 a 6 para o Jogador 1 e outro valor para o Jogador 2 e some
+        1 no placar do item a) de acordo com o resultado.
+
+        c) Após atualizar o placar, emita a mensagem "O jogador X está vencendo!", onde X é o jogador que está vencendo.
+        Caso o jogo esteja empatado, a mensagem será "O jogo está empatado!"
+
+        <h1>Jogo de Dados Remake</h1>
+        <p id="Placar">Jogador 1: 0<br><br>Jogador 2: 0<br><br>Empate: 0</p>
+        <button onclick="JogarDadosRemake()">Jogar</button>
+        <p id="ResultadoJogoDadosRemake"></p>
+    </div>
+
+</body>
+
+<script>
+    let resultadodado1 = 0
+    function Dado1() {
+        resultadodado1 = Math.floor(Math.random() * 6) + 1
+        console.log(resultadodado1)
+        Resultado1.innerHTML = "Resultado do jogador 1: " + resultadodado1
+    }
+
+    let resultadodado2 = 0
+    function Dado2() {
+        resultadodado2 = Math.floor(Math.random() * 6) + 1
+        console.log(resultadodado2)
+        Resultado2.innerHTML = "Resultado do jogador 2: " + resultadodado2
+    }
+
+    function Comparar() {
+
+        if (resultadodado1 > resultadodado2) {
+            ResultadoComparacao.innerHTML = "Jogador 1 venceu!"
+        } else if (resultadodado2 > resultadodado1) {
+            ResultadoComparacao.innerHTML = "Jogador 2 venceu!"
+        } else {
+            ResultadoComparacao.innerHTML = "Empate!"
+        }
+    }
+
+    function Avaliar() {
+        let avaliacao = Math.round(Math.random() * 50) / 10
+        console.log(avaliacao)
+        ResultadoAvaliacao.innerHTML = `Nota recebida: ${avaliacao} `
+
+        if (avaliacao >= 0 && avaliacao <= 0.5) {
+            ResultadoAvaliacao.innerHTML += "Muito Triste 😭"
+        } else if (avaliacao > 0.5 && avaliacao <= 1.5) {
+            ResultadoAvaliacao.innerHTML += "Meio Triste 😢"
+        } else if (avaliacao > 1.5 && avaliacao <= 3.5) {
+            ResultadoAvaliacao.innerHTML += "Neutro 😐"
+        } else if (avaliacao > 3.5 && avaliacao <= 4.5) {
+            ResultadoAvaliacao.innerHTML += "Feliz 🙂"
+        } else if (avaliacao > 4.5) {
+            ResultadoAvaliacao.innerHTML += "Muito Feliz 😀"
+        }
+    }
+
+    let avaliacoes = []
+    function Avaliar2() {
+        let avaliacao = Math.round(Math.random() * 50) / 10
+        avaliacoes.push(avaliacao)
+        console.log(avaliacao)
+        ResultadoAvaliacao2.innerHTML = `Nota recebida: ${avaliacao} `
+
+        if (avaliacao >= 0 && avaliacao <= 0.5) {
+            ResultadoAvaliacao.innerHTML += "Muito Triste 😭"
+        } else if (avaliacao > 0.5 && avaliacao <= 1.5) {
+            ResultadoAvaliacao2.innerHTML += "Meio Triste 😢"
+        } else if (avaliacao > 1.5 && avaliacao <= 3.5) {
+            ResultadoAvaliacao2.innerHTML += "Neutro 😐"
+        } else if (avaliacao > 3.5 && avaliacao <= 4.5) {
+            ResultadoAvaliacao2.innerHTML += "Feliz 🙂"
+        } else if (avaliacao > 4.5) {
+            ResultadoAvaliacao2.innerHTML += "Muito Feliz 😀"
+        }
+    }
+
+    function VerificarMedia() {
+        let soma = 0
+        for (let i = 0; i < avaliacoes.length; i++) {
+            soma += avaliacoes[i]
+            console.log(avaliacoes[i])
+        }
+        let media = soma / avaliacoes.length
+        ResultadoMedia.innerHTML = `Média geral: ${media.toFixed(1)}`
+    }
+
+    function SortearTemperatura() {
+        let num_aleatorio = Math.round(Math.random() * 40) - 20
+        console.log(num_aleatorio)
+        ResultadoTemperatura.innerHTML = `Temperatura sorteada: ${num_aleatorio}°C`
+
+        if (num_aleatorio < 1) {
+            ResultadoTemperatura.innerHTML += "<br>Dá pra conservar qualquer alimento"
+        }
+        else if (num_aleatorio >= 1 && num_aleatorio <= 10) {
+            ResultadoTemperatura.innerHTML += "<br>Conserva a maioria dos alimentos"
+        }
+        else if (num_aleatorio > 10) {
+            ResultadoTemperatura.innerHTML += "<br>Estraga a maioria dos alimentos"
+        }
+    }
+
+    function FasesdaLua() {
+        let dia = Math.floor(Math.random() * 31) + 1
+        console.log(dia)
+        ResultadoLua.innerHTML = `Dia sorteado: ${dia} <br>`
+
+        if (dia <= 7) {
+            ResultadoLua.innerHTML += "Fase da lua: Lua nova <img src='https://cdn-icons-png.flaticon.com/256/42/42603.png' width='20px'>"
+        }
+        else if (dia <= 16) {
+            ResultadoLua.innerHTML += "Fase da lua: Lua cheia <img src='https://images.vexels.com/media/users/3/231517/isolated/lists/08159ded466200ad2ce39cd77e9225ad-lua-cheia-plana.png' width='20px'>"
+        }
+        else if (dia <= 22) {
+            ResultadoLua.innerHTML += "Fase da lua: Lua minguante <img src='https://cdn-icons-png.flaticon.com/256/12/12548.png' width='20px'>"
+        }
+        else {
+            ResultadoLua.innerHTML += "Fase da lua: Lua crescente <img src='https://images.emojiterra.com/google/noto-emoji/unicode-17.0/color/1024px/1f314.png' width='20px'>"
+        }
+    }
+
+    let contadorpares = 0
+    let contadorimpares = 0
+    function ParOuImpar() {
+        let num_aleatorio = Math.floor(Math.random() * 22) - 30
+        console.log(num_aleatorio)
+        ResultadoParOuImpar.innerHTML = `Número sorteado: ${num_aleatorio}`
+
+        if (num_aleatorio % 2 == 0) {
+            contadorpares++
+        } else {
+            contadorimpares++
+        }
+        ParOuImparContador.innerHTML = `Números pares: ${contadorpares} <br> Números ímpares: ${contadorimpares}`
+    }
+
+    function Sorteio() {
+        let nome = NomeSorteio.value
+        let numero = parseInt(NumeroSorteio.value)
+        let contador = 0
+        let num_aleatorio = 0
+        if (numero < 1 || numero > 10) {
+            alert("Por favor, digite um número entre 1 e 10.")
+        }
+        else {
+            while (num_aleatorio != numero) {
+                num_aleatorio = Math.floor(Math.random() * 10) + 1
+                console.log(num_aleatorio)
+                contador++
+            }
+            ResultadoSorteio.innerHTML = `Parabéns, ${nome} você foi sorteado(a) após ${contador} sorteios!`
+        }
+
+    }
+
+    function Sorteio2() {
+        let nome = NomeSorteio2.value
+        let numero = parseInt(NumeroSorteio2.value)
+        let contador = 0
+        let num_aleatorio = 0
+        if (numero < 1 || numero > 100) {
+            alert("Por favor, digite um número entre 1 e 100.")
+        }
+        else {
+            while (num_aleatorio != numero) {
+                num_aleatorio = Math.floor(Math.random() * 100) + 1
+                console.log(num_aleatorio)
+                contador++
+            }
+            ResultadoSorteio2.innerHTML = `Parabéns, ${nome} você foi sorteado(a) após ${contador} sorteios!`
+        }
+
+    }
+
+    let placarJogador1 = 0
+    let placarJogador2 = 0
+    let placarEmpate = 0
+    function JogarDadosRemake() {
+        let resultado1 = Math.floor(Math.random() * 6) + 1
+        let resultado2 = Math.floor(Math.random() * 6) + 1
+        console.log(resultado1)
+        console.log(resultado2)
+
+        if (resultado1 > resultado2) {
+            placarJogador1++
+        } else if (resultado2 > resultado1) {
+            placarJogador2++
+        } else {
+            placarEmpate++
+        }
+        Placar.innerHTML = `Jogador 1: ${placarJogador1} <br><br>Jogador 2: ${placarJogador2} <br><br>Empate: ${placarEmpate}`
+
+        if (placarJogador1 > placarJogador2 && placarJogador1 > placarEmpate) {
+            ResultadoJogoDadosRemake.innerHTML = "O jogador 1 está vencendo!"
+        } else if (placarJogador2 > placarJogador1 && placarJogador2 > placarEmpate) {
+            ResultadoJogoDadosRemake.innerHTML = "O jogador 2 está vencendo!"
+        } else {
+            ResultadoJogoDadosRemake.innerHTML = "O jogo está empatado!"
+        }
+    }
+
+
+</script>
+
+</html>
