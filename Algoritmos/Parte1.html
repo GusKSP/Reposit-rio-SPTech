@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte 1</title>
+    <link rel="stylesheet" href="../Algoritmos/style.css">
+</head>
+
+<body>
+    <div>
+        <h1>Sorteio 0 a 0.999...</h1>
+        <button onclick="Sortear()"> Sortear </button>
+    <p id="Resultado1"></p>
+</div>
+    <br><br>
+    
+    <div>
+        <h1>Times de SP</h1>
+        <button onclick="Times()">Sortear Times</button>
+        <div id="imagem_time"> </div>
+    </div>
+    <br><br>
+    <div>
+        <h1>Dado</h1>
+        <button onclick="Dados()">Jogar dados</button>
+        <div class="dado">
+            <p id="Resultado3"></p>
+        </div>
+    </div>
+    <br><br>
+    <div>
+        <h1>Notas</h1>
+        <button onclick="Nota()">Sotear Nota</button>
+        <p id="Resultado4"></p>
+    </div>
+    <br><br>
+    <div>
+        <h1>jokenpo!</h1>
+        <button onclick="Jokenpo()">Jogar</button>
+        <div class="jokenpo">
+            <div id="jokenpo1">
+                <img src="" alt="" width="200px">
+            </div>
+            <p>X</p>
+            <div id="jokenpo2">
+                <img src="" alt="" width="200px">
+            </div>
+            <p id="Resultado5"></p>
+        </div>
+    </div>
+    <br><br>
+    <div>
+        <h1>Que horas são?</h1>
+        <button onclick="Horario()">Sortear Horário</button>
+        <p id="Resultado6"></p> 
+    </div>
+    <br><br>
+    <div>
+        <h1>Números Canibalísticos</h1>
+        <button onclick="Canibalistico()">Quero Um Número Canibalístico</button>
+        <p id="Resultado7"></p>
+    </div>
+    <br><br>
+    <div>
+        <h1>Situação do Aluno</h1>
+        <div class="Vertical">
+            <div class="Ex8">
+                <p>Gerar uma nota de aluno entre 0 e 10</p>
+                <button onclick="Nota2()">Gerar uma nota</button>
+                <p id="Nota_Resultado_Ex8"></p>
+            </div>
+            <div class="Ex8">
+                <p>Gerar uma frequência de aluno entre 0 e 100</p>
+                <button onclick="Frequencia2()">Gerar uma frequência</button>
+                <p id="Frequencia_Resultado_Ex8"></p>
+            </div>
+        </div>
+        <button onclick="Situacao()">Ver Situação</button>
+    </div>
+    <br><br>
+
+        <h1>Situação do Aluno Parte 2</h1>
+        <div class="Vertical">
+            <div class="Ex8">
+                <p>Gerar uma nota de aluno entre 3 e 10</p>
+                <button onclick="Nota3()">Gerar uma nota</button>
+                <p id="Nota_Resultado_Ex9"></p>
+            </div>
+            <div class="Ex8">
+                <p>Gerar uma frequência de aluno entre 50 e 100</p>
+                <button onclick="Frequencia3()">Gerar uma frequência</button>
+                <p id="Frequencia_Resultado_Ex9"></p>
+            </div>
+        </div>
+        <button onclick="Situacao2()">Ver Aprovação</button>
+    </div>
+</body>
+
+</html>
+<script>
+    function Sortear() {
+        let num_aleatorio = Math.random()
+        console.log(num_aleatorio)
+        if (num_aleatorio > .5) {
+            Resultado1.innerHTML = "Eu arredondaria para 1"
+        }
+        else {
+            Resultado1.innerHTML = "Eu arredondaria para 0"
+        }
+    }
+
+    function Times() {
+        let num_aleatorio = Math.floor(Math.random() * 4) + 1
+        console.log(num_aleatorio)
+        imagem_time.innerHTML = ""
+        if (num_aleatorio == 1) {
+            imagem_time.innerHTML += `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFEGVO2YAys_bNBsb32WD12GmBio4s_J0wgA&s" alt="São Paulo" width=100px>`
+        }
+
+        if (num_aleatorio == 2) {
+            imagem_time.innerHTML += `<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/874.png" alt="Corinthians" width=100px>`
+        }
+
+        if (num_aleatorio == 3) {
+            imagem_time.innerHTML += `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuR66DHJiZkwbDRzO07mObcXa4DCBULnR80A&s" alt="Santos" width=100px>`
+        }
+
+        if (num_aleatorio == 4) {
+            imagem_time.innerHTML += `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/SE_Palmeiras_2025_crest.png/250px-SE_Palmeiras_2025_crest.png" alt="Palmeiras" width=100px>`
+        }
+    }
+
+    function Dados() {
+        let num_aleatorio = Math.floor(Math.random() * 20) + 1
+        Resultado3.innerHTML = num_aleatorio
+    }
+
+    function Nota() {
+        let num_aleatorio = Math.floor(Math.random() * 100) / 10
+        Resultado4.innerHTML = num_aleatorio
+    }
+
+    function Jokenpo() {
+        let num_aleatorio = Math.floor(Math.random() * 3) + 1
+        let num_aleatorio2 = Math.floor(Math.random() * 3) + 1
+        if (num_aleatorio == 1) {
+            jokenpo1.innerHTML = `<img src="https://cdn.dooca.store/72923/products/cjcpfqreixcswo8sikcprc7mz1bs6rvmmjil_640x640+fill_ffffff.png?v=1744292798&webp=0" alt="Pedra" width="200px">`
+        }
+        if (num_aleatorio == 2) {
+            jokenpo1.innerHTML = `<img src="https://images.tcdn.com.br/img/img_prod/1041864/500_folhas_papel_foto_glossy_brilhante_a4_115g_359399_1_f27f374550ddb6730fb770b04ff81856.jpg" alt="Papel" width="200px">`
+        }
+        if (num_aleatorio == 3) {
+            jokenpo1.innerHTML = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9VbeTWThdmMGs0kp5DHgH6QRx93jr9qUBkg&s" alt="Tesoura" width="200px">`
+        }
+        if (num_aleatorio2 == 1) {
+            jokenpo2.innerHTML = `<img src="https://cdn.dooca.store/72923/products/cjcpfqreixcswo8sikcprc7mz1bs6rvmmjil_640x640+fill_ffffff.png?v=1744292798&webp=0" alt="Pedra" width="200px">`
+        }
+        if (num_aleatorio2 == 2) {
+            jokenpo2.innerHTML = `<img src="https://images.tcdn.com.br/img/img_prod/1041864/500_folhas_papel_foto_glossy_brilhante_a4_115g_359399_1_f27f374550ddb6730fb770b04ff81856.jpg" alt="Papel" width="200px">`
+        }
+        if (num_aleatorio2 == 3) {
+            jokenpo2.innerHTML = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9VbeTWThdmMGs0kp5DHgH6QRx93jr9qUBkg&s" alt="Tesoura" width="200px">`
+        }
+
+        if ((num_aleatorio == 1 && num_aleatorio2 == 2) || (num_aleatorio == 2 && num_aleatorio2 == 3) || (num_aleatorio == 3 && num_aleatorio2 == 1) ){
+            
+            Resultado5.innerHTML = "Você perdeu"
+
+        }
+
+        else if ((num_aleatorio == 3 && num_aleatorio2 == 2) || (num_aleatorio == 1 && num_aleatorio2 == 3) || (num_aleatorio == 2 && num_aleatorio2 == 1) ){
+
+            Resultado5.innerHTML = "Você Ganhou"
+
+        }
+        else{
+
+            Resultado5.innerHTML = "<br<br>Empate"
+
+        }
+
+
+    }
+
+    function Horario(){Canibalistico
+        let num_aleatorio = Math.round(Math.random() * 23)
+        console.log(num_aleatorio)
+        if(num_aleatorio <= 11){
+            Resultado6.innerHTML = `Bom dia flor do dia, agora são ${num_aleatorio}h!`
+        }
+        else if(num_aleatorio <= 17){
+            Resultado6.innerHTML = `Boa tarde, já vai tarde! São ${num_aleatorio}h!`
+
+        }
+
+        else if(num_aleatorio <= 23){
+            Resultado6.innerHTML = `Boa noite, durma bem! São ${num_aleatorio}h!`
+
+        }
+    }
+
+    function Canibalistico(){
+        let Lista = [3,4,7,10,12]
+        let num_aleatorio = Math.floor(Math.random() * 15) + 1
+        console.log(num_aleatorio)
+        if (Lista.includes(num_aleatorio)){
+            Resultado7.innerHTML = "Eu S2 números canibalísticos!"
+        }
+        else{
+            Resultado7.innerHTML = "Ah! Me dá um número bom na próxima !"
+        }
+    }
+
+    let Notadoaluno = 0
+    let Frequenciadoaluno = 0
+    function Nota2(){
+        Notadoaluno = Math.floor(Math.random() * 1000)/100
+        console.log(Notadoaluno)
+        Nota_Resultado_Ex8.innerHTML = "Nota do aluno: " + Notadoaluno
+    }
+    function Frequencia2(){
+        Frequenciadoaluno = Math.floor(Math.random() * 10000)/100
+        console.log(Frequenciadoaluno)
+        Frequencia_Resultado_Ex8.innerHTML = "Frequencia do aluno: " + Frequenciadoaluno
+    }
+    function Situacao(){
+        alert(`Nota: ${Notadoaluno} | Frequencia: ${Frequenciadoaluno}%`)
+    }
+
+    let Notadoaluno2 = 0
+    let Frequenciadoaluno2 = 0
+    function Nota3(){
+        Notadoaluno2 = Math.floor((Math.random() * 100)+30)/10
+        console.log(Notadoaluno2)
+        Nota_Resultado_Ex9.innerHTML = "Nota do aluno: " + Notadoaluno2
+        
+    }
+
+    function Frequencia3(){
+        Frequenciadoaluno2 = Math.floor((Math.random() * 1000)+500)/10
+        console.log(Frequenciadoaluno2)
+        Frequencia_Resultado_Ex9.innerHTML = "Frequencia do aluno: " + Frequenciadoaluno2
+        
+    }
+    function Situacao2(){
+        let Aprovacao = "Aprovado"
+        if (Notadoaluno2 < 6 || Frequenciadoaluno2 < 75){
+            Aprovacao = "Reprovado"
+        }
+        alert(`Com nota: ${Notadoaluno2 } e frequência: ${Frequenciadoaluno2}%, o aluno está ${Aprovacao}!`)
+
+    }
+</script>
