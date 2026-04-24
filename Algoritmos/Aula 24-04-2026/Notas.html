@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parametros</title>
+</head>
+
+<body>
+    <button onclick="add(5)">
+        Adicionar 5
+    </button>
+    <button onclick="add(1)">
+        Adicionar 1
+    </button>
+    <button onclick="add(2)">
+        Adicionar 2
+    </button>
+    <button onclick="add(3)">
+        Adicionar 3
+    </button>
+    <button onclick="add(4)">
+        Adicionar 4
+    </button>
+
+
+    <input type="number" id="ipt_falta">
+    <button onclick="lancar_faltas()">Lançar</button>
+    <div id="Resultado"></div>
+</body>
+
+<script src="funcoes.js"></script>
+
+<script>
+    // problema de repetição do código, caso o cliente queira adicionar mais um valor.
+    // problema com padrão de nomenclatura
+    let num = 0
+    function add(num_add) {
+        num += num_add;
+        Resultado.innerHTML = `O valor é ${num}`
+    }
+</script>
+
+<script>
+    let faltas = []
+    function lancar_faltas() {
+        let falta_do_dia = Number(ipt_falta.value)
+        faltas.push(falta_do_dia)
+
+        calcular_media(faltas)
+    }
+</script>
+
+</html>

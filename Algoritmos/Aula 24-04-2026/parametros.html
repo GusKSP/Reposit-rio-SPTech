@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parametros</title>
+</head>
+
+<body>
+    <button onclick="add(5)">
+        Adicionar 5
+    </button>
+    <button onclick="add(1)">
+        Adicionar 1
+    </button>
+    <button onclick="add(2)">
+        Adicionar 2
+    </button>
+    <button onclick="add(3)">
+        Adicionar 3
+    </button>
+    <button onclick="add(4)">
+        Adicionar 4
+    </button>
+
+    <input type="text" id="ipt_Nome" oninput="teste()">
+    <div id="Resultado"></div>
+</body>
+
+<script src="funcoes.js"></script>
+
+<script>
+    let num = 0
+    function add(num_add) {
+        num += num_add;
+        Resultado.innerHTML = `O valor é ${num}`
+    }
+    // problema de repetição do código, caso o cliente queira adicionar mais um valor.
+    // problema com padrão de nomenclatura
+</script>
+
+<script>
+    // Uso prático dos parâmetros
+    let lista_notas = []
+    function teste() {
+        let nome = ipt_Nome.value
+        let notaEntrega = Number(5.1)
+        lista_notas.push(notaEntrega)
+
+        calcular_media(lista_notas)
+    }
+</script>
+
+</html>
