@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 1.5 Calcula fatoria de um número
+Nome: calcularFatorial
+Recebe um parâmetro numero
+Valida se o parâmetro é null ou undefined e caso seja:
+Escreva no console "Parâmetro X não pode ser nulo ou indefinido" - Onde X é o nome do parâmetro.
+Interrompa a execução da função.
+Valida o tipo do parâmetro != number e caso seja:
+Escreva no console "tipo inválido para o argumento X" - Onde X é nome do parâmetro.
+Interrompa a execução da função.
+Dica: utilize o typeof - Exemplo: typeof numero1 == "number"
+Calcula e retorna o fatorial do número.
+-->
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        align-items: center;
+    }
+
+    form button {
+        width: 100px;
+    }
+
+    .Vertical {
+        display: flex;
+    }
+
+    .Horizontal {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+    }
+</style>
+
+<body>
+    <div class="Vertical">
+        <div class="Horizontal">
+            <h3>Exercicio 1.1</h3>
+            <form>
+                <input type="text" id="num1"><br>
+                <input type="text" id="num2"><br>
+                <button onclick="receberValoresSomar()">Somar</button>
+            </form>
+            <div id="div_resultadoSomar"></div>
+        </div>
+        <div class="Horizontal">
+            <h3>Exercicio 1.2</h3>
+            <form>
+                <input type="text" id="val1" placeholder="x1"><br>
+                <input type="text" id="val2" placeholder="y1"><br>
+                <input type="text" id="val3" placeholder="x2"><br>
+                <input type="text" id="val4" placeholder="y2"><br>
+                <button onclick="receberValoresDistancia()">Calcular Distância</button>
+            </form>
+            <div id="div_resultadoDistancia"></div>
+        </div>
+        <div class="Horizontal">
+            <h3>Exercicio 1.3</h3>
+            <form>
+                <input type="text" id="ipt_segundos" placeholder="segundos"><br>
+                <button onclick="receberValoresConverter()">Converter</button>
+            </form>
+            <div id="div_resultadoConverter"></div>
+        </div>
+        <div class="Horizontal">
+            <h3>Exercicio 1.4</h3>
+            <form>
+                <input type="text" id="ipt_numero" placeholder="número Primo"><br>
+                <button onclick="receberValoresPrimo()">Verificar Primo</button>
+            </form>
+            <div id="div_resultadoPrimo"></div>
+        </div>
+    </div>
+    <br><br>
+    <div class="Vertical">
+        <div class="Horizontal">
+            <h3>Exercicio 1.5</h3>
+            <form>
+                <input type="text" id="ipt_numero_fatorial" placeholder="número para fatorial"><br>
+                <button onclick="receberValoresFatorial()">Calcular Fatorial</button>
+            </form>
+            <div id="div_resultadoFatorial"></div>
+        </div>
+        <div class="Horizontal">
+            <h3>Exercicio 1.6</h3>
+            <form>
+                <input type="text" id="ipt_numero_media" placeholder="número para média"><br>
+                <button onclick="receberValoresMedia()">Calcular Média</button>
+            </form>
+            <div id="div_resultadoMedia">
+
+            </div>
+        </div>
+        <div class="Horizontal">
+            <h3>Exercicio 1.7</h3>
+            <form>
+                <input type="text" id="ipt_numero_media_ponderada" placeholder="número para média ponderada"><br>
+                <input type="text" id="ipt_peso" placeholder="peso do número"><br>
+                <button onclick="receberValoresMediaPonderada()">Calcular Média Ponderada</button>
+            </form>
+            <div id="div_resultadoMediaPonderada"></div>
+        </div>
+    </div>
+
+
+</body>
+<script src="matematica.js"></script>
+
+<script>
+    document.querySelectorAll("form").forEach(form => {
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+        })
+    })
+    function receberValoresSomar() {
+        let numero1 = num1.value;
+        let numero2 = num2.value;
+        let resultado = Somar(numero1, numero2);
+        div_resultadoSomar.innerHTML = resultado;
+    }
+    function receberValoresDistancia() {
+        let x1 = val1.value;
+        let y1 = val2.value;
+        let x2 = val3.value;
+        let y2 = val4.value;
+        let resultado = calcularDistancia(x1, y1, x2, y2);
+        div_resultadoDistancia.innerHTML = resultado;
+    }
+    function receberValoresConverter() {
+        let segundos = ipt_segundos.value;
+        let resultado = converterParaHoraMinutoSegundo(segundos);
+        div_resultadoConverter.innerHTML = resultado;
+    }
+    function receberValoresPrimo() {
+        let numero = ipt_numero.value;
+        let resultado = ePrimo(numero);
+        div_resultadoPrimo.innerHTML = resultado;
+    }
+    function receberValoresFatorial() {
+        let numero = ipt_numero_fatorial.value;
+        let resultado = calcularFatorial(numero);
+        div_resultadoFatorial.innerHTML = resultado;
+    }
+
+    let listaMedia = []
+    function receberValoresMedia() {
+        let numero = ipt_numero_media.value;
+        listaMedia.push(numero);
+        let resultado = calcularMedia(listaMedia);
+        div_resultadoMedia.innerHTML = resultado;
+    }
+
+    let listaMediaPonderada = []
+    let listaPesos = []
+    function receberValoresMediaPonderada() {
+        let numero = ipt_numero_media_ponderada.value;
+        let peso = ipt_peso.value;
+        listaMediaPonderada.push(numero);
+        listaPesos.push(peso);
+        let resultado = calcularMediaPonderada(listaMediaPonderada, listaPesos);
+        div_resultadoMediaPonderada.innerHTML = resultado;
+    }
+</script>
+
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="nome" id="nome"> <br>
+    <input type="number" name="nota" id="nota"><br>
+    <button onclick="Cadastrar()">Cadastrar</button>
+
+    <button onclick="Exibir()">Exibir</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    let alunos = [];
+    function Cadastrar() {
+        let nome = document.getElementById("nome").value;
+        let nota = document.getElementById("nota").value;
+
+        let aluno = {
+            'nome': nome,
+            'nota': nota
+        };
+        alunos.push(aluno);
+    }
+
+    function Exibir() {
+        let resultado = document.getElementById("resultado");
+        resultado.innerHTML = "";
+        for (let i = 0; i < alunos.length; i++) {
+            resultado.innerHTML += `<p>Aluno: ${alunos[i].nome} - Nota: ${alunos[i].nota}</p> <hr>`;
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>Buscar Filmes:</h2>
+
+  <span>Nome:</span>
+  <input type="text" id="ipt_nome">
+  <button onclick="pesquisarNome()">Pesquisar</button>
+
+  <span>Diretor:</span>
+  <input type="text" id="ipt_diretor">
+  <button onclick="pesquisarDiretor()">Pesquisar</button>
+
+  <span>Ano:</span>
+  <select id="ipt_ano_parametro">
+    <option value="maior_igual">&gt;=</option>
+    <option value="igual">==</option>
+    <option value="menor_igual">&lt;=</option>
+  </select>
+  <input type="number" id="ipt_ano">
+  <button onclick="pesquisarAno()">Pesquisar</button><br><br>
+
+  <span>Gênero:</span>
+  <input type="text" id="ipt_genero">
+  <button onclick="pesquisarGenero()">Pesquisar</button>
+
+  <span>Média:</span>
+  <select id="ipt_media_parametro">
+    <option value="maior_igual">&gt;=</option>
+    <option value="igual">==</option>
+    <option value="menor_igual">&lt;=</option>
+  </select>
+  <input type="text" id="ipt_media">
+  <button onclick="pesquisarMedia()">Pesquisar</button><br><br>
+
+  <button onclick="pesquisar()">Mostrar Todos</button>
+
+  <div id="div_resultado"></div>
+</body>
+
+</html>
+<script src="dados.js"></script>
+<script>
+  function pesquisarNome() {
+    let NomeFilme = ipt_nome.value
+    div_resultado.innerHTML = ""
+    let media = 0
+    for (let i = 0; i < filmes.length; i++) {
+      if (filmes[i].nome == NomeFilme) {
+        media = MediaNotas(filmes[i].notas)
+        div_resultado.innerHTML +=
+          `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | ${media} <br>`
+      }
+    }
+  }
+
+  function pesquisarDiretor() {
+    let DiretorFilme = ipt_diretor.value
+    div_resultado.innerHTML = ""
+    let media = 0
+    for (let i = 0; i < filmes.length; i++) {
+      if (filmes[i].diretor == DiretorFilme) {
+        media = MediaNotas(filmes[i].notas)
+        div_resultado.innerHTML +=
+          `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | ${media.toFixed(2)} <br>`
+      }
+    }
+  }
+
+  function pesquisarAno() {
+    div_resultado.innerHTML = ""
+    let ano = ipt_ano.value
+    let parametro = ipt_ano_parametro.value
+    for (let i = 0; i < filmes.length; i++) {
+      if (parametro == "maior_igual" && filmes[i].ano >= ano) {
+        media = MediaNotas(filmes[i].notas)
+        div_resultado.innerHTML +=
+          `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | ${media.toFixed(2)} <br>`
+      } else if (parametro == "igual" && filmes[i].ano == ano) {
+        media = MediaNotas(filmes[i].notas)
+        div_resultado.innerHTML +=
+          `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | ${media.toFixed(2)} <br>`
+      } else if (parametro == "menor_igual" && filmes[i].ano <= ano) {
+        media = MediaNotas(filmes[i].notas)
+        div_resultado.innerHTML +=
+          `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | ${media.toFixed(2)} <br>`
+      }
+    }
+  }
+
+
+  function pesquisarGenero() {
+    let var_genero = ipt_genero.value
+    div_resultado.innerHTML = ""
+    let media = 0
+    for (let i = 0; i < filmes.length; i++) {
+      for (let j = 0; j < filmes[i].generos.length; j++) {
+        if (filmes[i].generos[j] == var_genero) {
+          media = MediaNotas(filmes[i].notas)
+          div_resultado.innerHTML +=
+            `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | Nota Média: ${media.toFixed(2)} <br>`
+        }
+      }
+    }
+  }
+
+  function pesquisarMedia() {
+    let media = ipt_media.value
+    let parametro = ipt_media_parametro.value
+    div_resultado.innerHTML = ""
+    let mediaPesquisa = 0
+    for (let i = 0; i < filmes.length; i++) {
+      mediaPesquisa = MediaNotas(filmes[i].notas)
+      if (parametro == "maior_igual" && mediaPesquisa >= media) {
+        div_resultado.innerHTML +=
+          `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | Nota Média: ${mediaPesquisa.toFixed(2)} <br>`
+      } else if (parametro == "igual" && mediaPesquisa == media) {
+        div_resultado.innerHTML +=
+          `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | Nota Média: ${mediaPesquisa.toFixed(2)} <br>`
+      } else if (parametro == "menor_igual" && mediaPesquisa <= media) {
+        div_resultado.innerHTML +=
+          `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | Nota Média: ${mediaPesquisa.toFixed(2)} <br>`
+      }
+    }
+  }
+
+  function pesquisar() {
+    div_resultado.innerHTML = ""
+    let media = 0
+    for (let i = 0; i < filmes.length; i++) {
+      media = MediaNotas(filmes[i].notas)
+      div_resultado.innerHTML +=
+        `Nome: ${filmes[i].nome} | Diretor: ${filmes[i].diretor} | Ano: ${filmes[i].ano} | Nota Média: ${media.toFixed(2)} <br>`
+    }
+  }
+
+  function MediaNotas(notas) {
+    let soma = 0
+    for (let k = 0; k < notas.length; k++) {
+      soma += notas[k]
+    }
+    return soma / notas.length
+  }
+</script>
