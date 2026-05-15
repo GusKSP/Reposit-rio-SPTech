@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onloadstart="jsons()" onload="mostrar()">
+    <div id="resultados"></div>
+</body>
+</html>
+<script>
+    const aluno = {
+    Nome: 'Ana Silva',
+    RA: '1234567',
+    Curso: 'Ciência da Computação',
+    Semestre: 1
+    }
+
+
+    const produto = {
+        nome: "",
+        preco: "",
+        quantidade:""
+    }
+
+    produto.nome = "Pão de queijo"
+    produto.preco = "5"
+    produto.quantidade = "15"
+    let total = Number(produto.preco)*Number(produto.quantidade)
+    console.log(produto)
+    
+    const endereco = [{
+        rua:"Minha",
+        numero:"000",
+        cidade:"Solidao"
+    }]
+    const cliente = {
+        nome:"Danilo",
+        idade:"12",
+        c_endereco: JSON.stringify(endereco[0])
+    }
+
+    const conta = {
+        titular:"Usuario_do_banco",
+        saldo:0,
+        banco:"XPTOBank"
+    }
+
+    let nomes_contatos = ["IceGurt","Danilo","Usuario_do_banco","Gus"]
+    let numeros_contatos = ["12121212","13131313","14141414","25252525"]
+    let qtd_contatos = 0
+    if (nomes_contatos.length > numeros_contatos.length){
+        qtd_contatos = nomes_contatos.length
+    }
+    else{
+        qtd_contatos = numeros_contatos.length
+    }
+    console.log (qtd_contatos)
+
+    const contatos = {
+        nomes: [],
+        telefones: []
+    }
+    
+    for (let i = 0; i < qtd_contatos; i++){
+        contatos.nomes.push(nomes_contatos[i])
+        contatos.telefones.push(numeros_contatos[i])
+    }
+
+    const alunos = {
+        nomes: ['Aluno1','Aluno2','Aluno3','Aluno4','Aluno5'],
+        notas: [1,2,3,4,5]
+    }
+
+    const Produtos = {
+        nome: ['detergente ype','mouse','areia de gato','papel higienico','teclado','racao de cachorro'],
+        categoria: ['higiene','eletronico','pets','higiene','eletronico','pets'],
+        preco: [15,16,17,18,19,20,21],
+    }
+
+    const pratos = {
+        nome: ['Feijao com farinha', 'Feijoad', 'Petit Gateau', 'Batata frita','Sorvete'],
+        tipo: ["entrada", "principal","sobremesa","entrada", "sobremesa"],
+        preco: [1,2,3,4,5,]
+    }
+
+    function mostrar(){
+        let total = Number(produto.preco)*Number(produto.quantidade)
+        resultados.innerHTML=""
+        resultados.innerHTML+='Nome: ' + aluno.Nome + '<br>'
+        resultados.innerHTML+='RA: ' + aluno.RA + '<br>'
+        resultados.innerHTML+='Curso: ' + aluno.Curso + '<br>'
+        resultados.innerHTML+='Semestre: ' + aluno.Semestre + '<br>'
+    
+        resultados.innerHTML+= `<br>Produto: ${produto.nome}<br>`
+        resultados.innerHTML+= `Preço: ${produto.preco}<br>`
+        resultados.innerHTML+= `Quantidade: ${produto.quantidade}<br>`
+        resultados.innerHTML+= `${total}<br>`
+
+        resultados.innerHTML+= `<br>Cliente: ${cliente.nome}<br>`
+        resultados.innerHTML+= `Idade: ${cliente.idade}<br>`
+        resultados.innerHTML+= `Endereco Completo: ${cliente.c_endereco}<br>`
+        resultados.innerHTML+= `Rua: ${endereco[0].rua}<br>`
+        resultados.innerHTML+= `Numero: ${endereco[0].numero}<br>`
+        resultados.innerHTML+= `Cidade: ${endereco[0].cidade}<br>`
+
+        resultados.innerHTML += `<br><input type="number" id="ipt_dep_sald">
+        <br>
+        <button onclick="Depositar()">Depositar</button>
+        <button onclick="Sacar()">Sacar</button> `
+        resultados.innerHTML+= `<br>Titular: ${conta.titular}<br>`
+        resultados.innerHTML+= `Saldo: ${conta.saldo}<br>`
+        resultados.innerHTML+= `Banco: ${conta.banco}<br>`
+
+        for (let i = 0; i <qtd_contatos ; i++){
+            resultados.innerHTML+= `<br>Contato: ${contatos.nomes[i]}<br>`
+            resultados.innerHTML+= `Telefone: ${contatos.telefones[i]}<br>`
+        }
+        var media = 0
+        let resultado_final = ""
+        for (let i = 0; i < alunos.notas.length; i++){
+            media += alunos.notas[i]
+            resultado_final +=`Alunos: ${alunos.nomes[i]}<br> 
+            Nota: ${alunos.notas[i]}<br>`
+        }
+        media = media/alunos.notas.length
+        resultados.innerHTML += `<br>Média da Turma: ${media}<br>`
+        resultados.innerHTML += resultado_final
+
+        resultados.innerHTML += `<h1>Filtro de produtos</h1>
+        <br>
+        <input type="text" id="ipt_tipo_produto"> <br>
+        <button onclick=Pesquisar()>Pesquisar</button>
+        <div id=resultado_pesquisa></div>`
+        for (let i = 0; i < pratos.categoria.length;i++){
+            
+        }
+    }
+    
+    function Depositar(){
+        let deposito = Number(ipt_dep_sald.value)
+        conta.saldo = conta.saldo + deposito
+        mostrar()
+    }
+    function Sacar(){
+        let saque = Number(ipt_dep_sald.value)
+        conta.saldo = conta.saldo - saque
+        mostrar()
+    }
+
+    function Pesquisar(){
+        let pesquisa = ipt_tipo_produto.value 
+        resultado_pesquisa.innerHTML =""
+        for (let i = 0; i < Produtos.categoria.length;i++){
+            if (Produtos.categoria[i].toLowerCase().trim() == pesquisa.toLowerCase().trim()){
+                resultado_pesquisa.innerHTML += `<br>Produto: ${Produtos.nome[i]}<br>
+                Categoria: ${Produtos.categoria[i]}<br>
+                Preco: ${Produtos.preco[i]}<br>`
+            }
+        }
+    }
+</script>
