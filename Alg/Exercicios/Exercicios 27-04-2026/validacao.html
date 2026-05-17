@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcoes de Lista
+    </title>
+</head>
+
+<body>
+    <h1>Funcoes de Lista</h1>
+    <input type="text" id="ipt_adicionar" placeholder="Digite um valor para ser adicionado"><br>
+    <button onclick="AdicionarValorFim()">Adicionar Valor ao Fim</button><br>
+    <button onclick="RemoverValorFim()">Remover Valor do Fim</button><br>
+    <button onclick="RemoverValorInicio()">Remover Valor do Inicio</button><br>
+    <button onclick="AdicionarValorInicio()">Adicionar Valor ao Inicio</button><br><br>
+    <input type="number" id="ipt_indice" placeholder="Digite o indice para alterar a lista"><br>
+    <input type="number" id="ipt_quantidade" placeholder="Digite a quantidade de elementos a serem removidos"><br>
+    <input type="text" id="ipt_novoElemento" placeholder="Digite o novo elemento (opcional)"><br>
+    <button onclick="AlterarElementosLista()">Alterar Lista</button><br><br>
+
+    <div id="resultado"></div>
+</body>
+<script src="funcoesdelista.js"></script>
+<script>
+    //5) alterarLista
+    // O que faz
+
+    // Permite remover e/ou adicionar elementos em qualquer posição da lista.
+
+    // Entrada
+
+    // lista → uma lista (array)
+    // indice → posição inicial onde a alteração será feita
+    // quantidade → quantidade de elementos que devem ser removidos
+    // novoElemento → (opcional) elemento que será adicionado
+    // Saída
+
+    // Retorna uma nova lista contendo as alterações
+    // Comportamento esperado
+
+    // Remove a quantidade especificada de elementos a partir do índice informado
+    // Se um novo elemento for informado, ele deve ser inserido na posição indicada
+    // Casos especiais
+
+    // Se:
+
+    // indice for maior que o tamanho da lista → não remove nada
+    // quantidade for 0 → apenas adiciona o novo elemento (se existir)
+    let lista = [];
+
+    function AdicionarValorFim() {
+        let valoraAdicionar = ipt_adicionar.value
+        lista = adicionarNoFinal(lista, valoraAdicionar);
+        exibirLista();
+    }
+
+    function RemoverValorFim() {
+        lista = removerDoFinal(lista);
+        exibirLista();
+    }
+
+    function RemoverValorInicio() {
+        lista = removerDoInicio(lista);
+        exibirLista();
+    }
+    function AdicionarValorInicio() {
+        let valorAdicionar = ipt_adicionar.value
+        lista = adicionarNoInicio(lista, valorAdicionar);
+        exibirLista()
+    }
+
+
+    function AlterarElementosLista() {
+        let indice = Number(ipt_indice.value);
+        let quantidade = Number(ipt_quantidade.value);
+        let novoElemento = ipt_novoElemento.value;
+
+        lista = alterarLista(lista, indice, quantidade, novoElemento);
+        exibirLista();
+    }
+
+    function exibirLista() {
+        resultado.innerHTML = lista;
+    }
+</script>
+
+</html>
