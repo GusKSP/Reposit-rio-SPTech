@@ -171,29 +171,31 @@ SELECT AVG(preco) AS media_preco_categoria FROM produto JOIN categoria ON idCate
 
 -- 12) Mostre a média das quantidades vendidas por produto.
 
-SELECT SUM(iv.quantidade) AS Soma_Vendas, 
-p.nomeProduto, 
-iv.fkProduto AS id_produto_vendido,
-v.dataVenda AS data_venda,
-v.idVenda AS id_venda
+SELECT p.nomeProduto AS Produto, AVG(iv.quantidade) AS 'média por produto'
 FROM produto p
-JOIN itemVenda iv ON iv.fkProduto = p.idProduto
-JOIN venda v ON iv.fkVenda = v.idVenda
-GROUP BY p.idProduto AND data_venda;
+JOIN itemVenda iv ON p.idProduto = iv.fkProduto
+GROUP BY idProduto;
 
-SELECT p.nomeProduto, ROUND(AVG(Soma_Vendas),2) AS media_vendas FROM produto p
-JOIN(
-	SELECT SUM(iv.quantidade) AS Soma_Vendas, 
-    p.nomeProduto, 
-    iv.fkProduto AS produto_vendido
-	FROM produto p
-	JOIN itemVenda iv ON iv.FkProduto = p.idProduto
-    JOIN Venda v ON iv.fkVenda = v.idVenda
-	GROUP BY p.idProduto AND dataVenda
-) AS psv ON psv.produto_vendido = p.idProduto
-GROUP BY psv.produto_vendido;
 -- 13) Mostre quantos produtos possuem preço acima de 300.
+
+SELECT COUNT(preco) AS 'Produtos acima de 300' FROM produto WHERE preco > 300;
 
 -- 14) Mostre a categoria com maior quantidade de produtos.
 
+SELECT c.nomeCategoria AS Categoria, COUNT(p.idProduto) AS quantidade_produtos
+FROM categoria c
+JOIN produto p ON p.fkCategoria = c.idCategoria
+GROUP BY fkCategoria 
+HAVING quantidade_produtos IN (
+	SELECT MAX(qtd_por_categoria) AS num_max FROM (
+		SELECT COUNT(idProduto) AS qtd_por_categoria FROM produto GROUP BY fkCategoria) AS Produtos_Categorias
+	)
+;
+
 -- 15) Mostre os produtos cujo preço seja maior que a média dos preços médios.
+
+SELECT nomeProduto, preco FROM produto WHERE preco > (
+	SELECT AVG(media_por_categoria) AS mediaMedias FROM (
+		SELECT AVG(preco)  AS media_por_categoria from produto GROUP BY fkCategoria
+	) AS precos_categoria
+);
